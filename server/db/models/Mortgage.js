@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MortgageSchema = new Schema({
-    LoanNumber: {
+    loanNumber: {
         type: String,
         required: true
     },

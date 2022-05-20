@@ -24,9 +24,14 @@ app.get('/api', (req, res) => {
     res.json({msg: 'Hello from api'})
 })
 
-app.get('/api/*', (req, res) => {
-    res.send('Hello from api/whatever you want')
-})
+app.use('/api/mortgage', require('./routes/mortgage'));
+// app.use('/api/user', require('./routes/user'));
+// app.use('/api/transaction', require('./routes/transaction'));
+
+
+// app.get('/api/*', (req, res) => {
+//     res.send('Hello from api/whatever you want')
+// })
 
 app.listen(PORT, () => {
     console.log(`Listening at http://${HOST_NAME}:${PORT}`);

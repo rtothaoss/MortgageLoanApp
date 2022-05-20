@@ -2,31 +2,31 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const TransactionSchema = new Schema({
-    LoanNumber: {
+    loanNumber: {
         type: String,
        
     },
-    DateReceived: {
+    dateReceived: {
         type: String
     },
-    TotalAmountReceived: {
+    totalAmountReceived: {
         type: String
     },
-    Principal: {
+    principal: {
         type: String,
        
     },
-    Interest: {
+    interest: {
         type: String,
         
     },
-    PMI: {
+    pmi: {
         type: String
     },
-    Escrow: {
+    escrow: {
         type: String
     },
-    Fees: {
+    fees: {
         type: String
     }
 })
