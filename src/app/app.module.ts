@@ -11,6 +11,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { LandingComponent } from './landing/landing.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { AuthComponent } from './auth/auth.component';
+import { HttpClientModule } from '@angular/common/http'
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { AuthComponent } from './auth/auth.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
