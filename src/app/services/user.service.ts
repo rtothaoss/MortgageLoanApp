@@ -11,6 +11,6 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   test(): Observable<any> {
-    return this.http.get(`${environment.serverUrl}/api`);
+    return this.http.get(`${environment.serverUrl}/api/users/`);
   }
 }
