@@ -5,7 +5,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const moment = require('moment');
 const app = express();
-const db = require('./config/db')
+const db = require('./db/config')
+
 
 const PORT = process.env.HOST_PORT
 const HOST_NAME = process.env.HOST_NAME
