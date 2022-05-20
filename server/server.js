@@ -24,9 +24,9 @@ app.get('/api', (req, res) => {
     res.json({msg: 'Hello from api'})
 })
 
-app.use('/api/mortgage', require('./routes/mortgage'));
-// app.use('/api/user', require('./routes/user'));
-// app.use('/api/transaction', require('./routes/transaction'));
+app.use('/api/mortgages', require('./routes/mortgage'));
+app.use('/api/users', require('./routes/user'));
+app.use('/api/transactions', require('./routes/transaction'));
 
 
 // app.get('/api/*', (req, res) => {
