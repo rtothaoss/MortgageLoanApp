@@ -1,1 +1,26 @@
-<p>header works!</p>
+<nav class="sticky top-0 z-50 grid grid-cols-3 shadow-md p-5 md:px-10 bg-neutral-800">
+    <div class="relative flex items-center h-10 cursor-pointer my-auto">
+        <div class="navbar-header">
+            <a class="navbar-brand text-white text-2xl" routerLink="/">Mortgage Loan App</a>
+        </div>
+        </div>
+
+        <div class="flex items-center justify-center">
+            <ul class="flex text-white ml-10">
+                <fa-icon [icon]="faPieChart" class="mr-2"></fa-icon><li routerLinkActive="active" ><a routerLink="/dashboard" class="text-decoration-none text-light mr-5">Dashboard</a></li>
+                <fa-icon [icon]="faFile" class="mr-2"></fa-icon><li routerLinkActive="active" ><a routerLink="/documents" class="text-decoration-none text-light mr-5">Documents</a></li>
+                <fa-icon [icon]="faCreditCard" class="mr-2"></fa-icon><li routerLinkActive="active" ><a routerLink="/transactions" class="text-decoration-none text-light mr-5">Transactions</a></li>
+            </ul>
+        </div>
+        <div class="flex items-center justify-end">
+            <ul class="text-white">
+                <li>
+                    <a style="cursor: pointer" class="text-light mr-5">Contact Us</a>
+                    <fa-icon [icon]="faUser" class="mr-2"></fa-icon>
+                    <a style="cursor: pointer" class="text-light">Logout</a>
+                </li>
+            </ul>
+        </div>
+     
+
+</nav>

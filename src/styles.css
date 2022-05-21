@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+
+/* @layer components {
+    .repeating-input {
+       @apply bg-gray-200 text-red-400 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white
+    }
+} */
+
+/* @layer components {
+    .titleFont {
+        @apply font-bold mt-2 mb-2
+    }
+} */
+
+html, body { 
+    height: 100%; 
+    width: 100%; 
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
