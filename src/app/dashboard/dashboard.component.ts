@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  arrowRight = faArrowAltCircleRight;
 
   constructor() { }
 
