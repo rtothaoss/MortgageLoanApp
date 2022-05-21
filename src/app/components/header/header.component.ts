@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import { faFile } from '@fortawesome/free-regular-svg-icons';
-import { faPieChart, faFile, faCreditCard, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -10,9 +10,7 @@ import { faPieChart, faFile, faCreditCard, faUser } from '@fortawesome/free-soli
 })
 export class HeaderComponent implements OnInit {
 
-  faFile = faFile;
-  faPieChart = faPieChart;
-  faCreditCard = faCreditCard;
+ 
   faUser = faUser;
 
   constructor() { }

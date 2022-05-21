@@ -12,7 +12,9 @@ import { LandingComponent } from './landing/landing.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { AuthComponent } from './auth/auth.component';
 import { HttpClientModule } from '@angular/common/http'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SubHeaderComponent } from './components/sub-header/sub-header.component';
+import { TransactionsComponent } from './transactions/transactions.component'
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     HeaderComponent,
     LandingComponent,
     DocumentsComponent,
-    AuthComponent
+    AuthComponent,
+    SubHeaderComponent,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,
