@@ -1,67 +1,95 @@
 <div class="container mx-auto">
   <app-sub-header></app-sub-header>
   <div class="mt-5">
-    <p class="text-black text-4xl font-semibold">Your Transactions</p>
+    <p class="text-black text-4xl font-semibold">Your Documents</p>
+  </div>
+  <div class="w-3/5 mt-10">
+    <p>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      Lorem Ipsum has been the industry's standard dummy text ever since the
+      1500s, when an unknown printer took a galley of type and scrambled it to
+      make a type specimen book.
+    </p>
   </div>
 
-  <div class="mb-7">
-    <div class="rounded-lg shadow-lg h-full row-span-2 col-span-2">
-      <div class="flex h-full w-full">
-        <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
-          <h5 class="text-gray-900 text-xl leading-tight font-medium mb-4">
-            Your current Year To Date Amount Paid
-          </h5>
-          <p class="text-gray-700 text-base">Total Amount Paid:</p>
-          <h5 class="text-2xl mb-4">$5,1015.60</h5>
-          <button
-            type="button"
-            class="text-base inline-block py-2.5 text-black font-medium leading-tight uppercase rounded"
-            (click)="this.onClick()"
-          >
-            <span *ngIf="!isActive"
-              ><fa-icon [icon]="arrowDown"></fa-icon
-            ></span>
-
-            <span *ngIf="isActive"> <fa-icon [icon]="arrowUp"></fa-icon></span>
-            Details
-          </button>
-          <div *ngIf="isActive">
-            <table class="table-auto">
-              <thead>
-                <tr>
-                  <th class="px-6 py-3">Principal</th>
-                  <th class="px-6 py-3">Interest</th>
-                  <th class="px-6 py-3">PMI</th>
-                  <th class="px-6 py-3">Escrow</th>
-                  <th class="px-6 py-3">Fees</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="px-6 py-3">$3,373.47</td>
-                  <td class="px-6 py-3">$1,642.13</td>
-                  <td class="px-6 py-3">$0.00</td>
-                  <td class="px-6 py-3">$0.00</td>
-                  <td class="px-6 py-3">$0.00</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+  <button
+    type="button"
+    class="mt-10 inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-md leading-tight uppercase rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"
+  >
+    Upload Documents
+  </button>
+  <div
+    class="mt-12 h-96 rounded-lg shadow-lg bg-purple-500 w-full flex place-items-center justify-center w-"
+  >
+    <div class="flex place-content-center h-72">
+      <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+        <h5 class="text-gray-900 text-xl leading-tight mb-2 font-semibold mt-2">
+          Review your 1098 here
+        </h5>
+        <p class="text-gray-700 text-base mb-4">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book.
+        </p>
+        <button
+          class="mx-2 text-red-600 font-semibold py-2 px-4 border border-red-600 hover:bg-red-600 hover:text-white hover:border-transparent rounded"
+        >
+          Download 1098
+        </button>
+        <button
+          class="mx-2 bg-red-600 text-white font-semibold hover:text-red-600 hover:bg-transparent py-2 px-4 border border-red-600 rounded"
+        >
+          View your 1098
+        </button>
       </div>
     </div>
   </div>
-  <div class="h-96 rounded-lg shadow-lg bg-purple-500 w-full flex place-items-center justify-center">
-    <div class="flex place-content-center h-56">
-        <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
-          <h5 class="text-gray-900 text-xl leading-tight mb-2 font-semibold mt-4">Recent Activity</h5>
-          <p class="text-lg font-semibold mt-8">May 4</p>
-          <p class="text-gray-700 text-base mb-4">
-            Your $1253.90 payment has been applied
-          </p>
-          <hr class="border-1 border-slate-600 mt-5 items-center text-right mx-auto">
+
+  <div class="mt-10 border">
+    <h1 class="text-center text-2xl mt-5">All Documents</h1>
+    <hr
+      class="border-1 border-slate-600 mt-5 items-center text-right mx-auto"
+    />
+    <div class="w-full flex justify-between mt-4">
+      <div class="ml-8">
+        <p class="text-gray-500">May 18,2022</p>
+        <h5 class="text-lg text-black">May Mortgage Statement</h5>
+        <p class="text-gray-500">Mortgage Statements</p>
+      </div>
+      <div class="flex mr-8 my-auto">
+        <div class="text-center cursor-pointer">
+          <fa-icon [icon]="faFile" class="text-3xl"></fa-icon>
+          <p class="mx-4">View</p>
+        </div>
+        <div class="text-center cursor-pointer">
+          <fa-icon [icon]="faFileDown" class="text-3xl"></fa-icon>
+          <p class="mx-4">Download</p>
         </div>
       </div>
-
+    </div>
+    <hr
+    class="border-1 border-gray-400 mt-5 items-center text-right mx-auto"
+  />
+    <div class="w-full flex justify-between mt-4">
+        <div class="ml-8">
+          <p class="text-gray-500">April 18,2022</p>
+          <h5 class="text-lg text-black">May Mortgage Statement</h5>
+          <p class="text-gray-500">Mortgage Statements</p>
+        </div>
+        <div class="flex mr-8 my-auto">
+          <div class="text-center cursor-pointer">
+            <fa-icon [icon]="faFile" class="text-3xl"></fa-icon>
+            <p class="mx-4">View</p>
+          </div>
+          <div class="text-center cursor-pointer">
+            <fa-icon [icon]="faFileDown" class="text-3xl"></fa-icon>
+            <p class="mx-4">Download</p>
+          </div>
+        </div>
+      </div>
+      <hr
+      class="border-1 border-gray-400 mt-5 items-center text-right mx-auto"
+    />
   </div>
 </div>
