@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
+import { CalculatorComponent } from './calculator/calculator.component';
 import { MortgageCalculatorComponent } from './components/mortgage-calculator/mortgage-calculator.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DocumentsComponent } from './documents/documents.component';
@@ -13,7 +14,7 @@ const routes: Routes = [
   {path: 'documents', component: DocumentsComponent},
   {path: 'transactions', component: TransactionsComponent},
   {path: 'auth', component: AuthComponent},
-  {path: 'calculator', component: MortgageCalculatorComponent}
+  {path: 'calculator', component: CalculatorComponent}
 ];
 
 @NgModule({

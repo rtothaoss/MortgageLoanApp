@@ -1,0 +1,20 @@
+.p-autocomplete{
+    min-width: 95%
+  }
+
+
+  .p-downpayment{
+     min-width: 70%;
+  }
+
+  .p-interestRate {
+      min-width: 20%
+  }
+
+  .p-propertyTax {
+      min-width: 100%
+  }
+
+  .p-propertyTax1 {
+      min-width: 70%
+  }
