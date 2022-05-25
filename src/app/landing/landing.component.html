@@ -6,75 +6,85 @@
 <p class="text-black text-3xl absolute top-10 left-7">Finance Your Dream Home</p>
 </div> -->
 
-<div class="grid grid-cols-1  sm:grid-cols-2 gap-4">
-    <div class="h-screen relative">
-        <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2080" />
-        <p class="text-white text-4xl absolute top-10 left-1/4">Finance Your Dream Home</p>
-    </div>
-    <div>
-        <h1 class="text-center text-3xl font-thin mt-10">Today's Mortgage Rates</h1>
-        <div class="grid grid-cols-2 gap-4">
-            <div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <div class="h-screen relative">
+    <img
+      src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2080"
+    />
+    <p class="text-white text-4xl absolute top-10 left-1/4">
+      Finance Your Dream Home
+    </p>
+  </div>
+  <div>
+    <h1 class="text-center text-3xl font-thin mt-10">Today's Mortgage Rates</h1>
+    <div class="grid grid-cols-2 gap-0 mt-10">
+      <div class="mx-auto">
         <h1 class="text-2xl mt-5">30-Year-Fixed</h1>
         <table class="table-auto text-center">
-            <thead>
-              <tr>
-                <th class="px-6 py-3">Interest</th>
-                <th class="px-6 py-3">APR</th>
-                <th class="px-6 py-3">Points</th>
-        
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="px-6 py-3">5.25%</td>
-                <td class="px-6 py-3">5.523%</td>
-                <td class="px-6 py-3">2.125</td>
-              </tr>
-            </tbody>
-          </table>
-          <h1 class="text-2xl mt-5">15-Year-Fixed</h1>
-          <table class="table-auto text-center">
-              <thead>
-                <tr>
-                  <th class="px-6 py-3">Interest</th>
-                  <th class="px-6 py-3">APR</th>
-                  <th class="px-6 py-3">Points</th>
-          
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="px-6 py-3">4.625%</td>
-                  <td class="px-6 py-3">5.06%</td>
-                  <td class="px-6 py-3">2</td>
-                </tr>
-              </tbody>
-            </table>
+          <thead>
+            <tr>
+              <th class="px-6 py-3">Interest</th>
+              <th class="px-6 py-3">APR</th>
+              <th class="px-6 py-3">Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-6 py-3">5.25%</td>
+              <td class="px-6 py-3">5.523%</td>
+              <td class="px-6 py-3">2.125</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h1 class="text-2xl mt-5">15-Year-Fixed</h1>
+        <table class="table-auto text-center">
+          <thead>
+            <tr>
+              <th class="px-6 py-3">Interest</th>
+              <th class="px-6 py-3">APR</th>
+              <th class="px-6 py-3">Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-6 py-3">4.625%</td>
+              <td class="px-6 py-3">5.06%</td>
+              <td class="px-6 py-3">2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div
+          class="rounded-lg shadow-lg h-36 flex w-3/4 cursor-pointer mx-auto"
+          (click)="onClick()"
+        >
+          <div class="my-auto ml-4">
+            <fa-icon [icon]="faCalculator" class="text-5xl"></fa-icon>
+          </div>
+          <div class="my-auto ml-4">
+            <h1 class="text-xl">Mortgage Calculator</h1>
+            <p class="text-sm">
+              Estimate your monthly payment, including taxes and insurance.
+            </p>
+          </div>
         </div>
-        <div>
-        <div class="rounded-lg shadow-lg h-36 flex w-3/4 cursor-pointer" (click)="onClick()">
-            <div class="my-auto ml-4">
-                <fa-icon [icon]="faCalculator" class="text-5xl"></fa-icon>
-            </div>
-            <div class="my-auto ml-4">
-                <h1 class="text-xl">Mortgage Calculator</h1>
-                <p class="text-sm">Estimate your monthly payment, including taxes and insurance.</p>
-            </div>
-            
+        <div
+          class="rounded-lg shadow-lg h-36 flex w-3/4 cursor-pointer mx-auto"
+        >
+          <div class="my-auto ml-4">
+            <fa-icon [icon]="faQuestion" class="text-5xl"></fa-icon>
+          </div>
+          <div class="my-auto ml-4">
+            <h1 class="text-xl">Talk with specialist</h1>
+            <p class="text-sm">
+              Connect with a mortgage broker and find out all your options.
+            </p>
+          </div>
         </div>
-        <div class="rounded-lg shadow-lg h-36 flex w-3/4 cursor-pointer">
-            <div class="my-auto ml-4">
-                <fa-icon [icon]="faQuestion" class="text-5xl"></fa-icon>
-            </div>
-            <div class="my-auto ml-4">
-                <h1 class="text-xl">Talk with specialist</h1>
-                <p class="text-sm">Connect with a mortgage broker and find out all your options.</p>
-            </div>
-            
-        </div>
-        </div>
-        
-        </div>
+      </div>
     </div>
+  </div>
 </div>

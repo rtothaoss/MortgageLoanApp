@@ -1,4 +1,4 @@
-<div class="container mx-auto">
+<div class="container mx-auto md:w-8/12">
   <app-sub-header></app-sub-header>
   <div class="mt-5">
     <p class="text-black text-4xl font-semibold">Your Dashboard</p>
@@ -9,19 +9,42 @@
     <div class="rounded-lg shadow-lg h-full row-span-2 col-span-2">
       <div class="flex h-full w-full">
         <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
-          <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">
+          <h5 class="text-gray-900 text-3xl leading-tight font-bold mb-2">
             Loan Info
           </h5>
-          <p class="text-gray-700 text-base mb-4">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <button
-            type="button"
-            class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-          >
-            Make a Payment
-          </button>
+          <div class="border bg-gray-100 h-48 mt-8 ml-4 mr-4">
+            <div class="grid grid-cols-2 grid-rows-2 gap-1">
+              <div class="flex h-20 items-center justify-center">
+                <h1 class="text-2xl font-extralight">Upcoming Payment:</h1>
+                <p class="font-semibold ml-2 text-2xl">$1,253.90</p>
+              </div>
+              <div class="flex items-center justify-center">
+                <button
+                type="button"
+                class="text-lg inline-block px-6 py-2.5 bg-red-600 text-white font-medium  leading-tight uppercase rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+              >
+                Refinance My Loan
+              </button>
+              </div>
+              <div class="flex items-center justify-evenly">
+                <div class="block">
+                  <p class="font-light">Payment Due Date:</p>
+                  <p class="font-medium">June 1, 2022</p>
+                </div>
+                <div class="block">
+                  <p class="font-light">Last Payment Received:</p>
+                  <p class="font-medium">May 4, 2022</p>
+                </div>
+              </div>
+              <div class="flex items-center justify-center">
+               <div class="block underline text-center text-purple-600 cursor-pointer">
+                <p class="mt-1">Setup Autopay</p>
+                <p class="mt-1">Edit Paperless Billing</p>
+                <p class="mt-1">View Loan Activity</p>
+               </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
