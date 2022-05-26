@@ -18,3 +18,8 @@
   .p-propertyTax1 {
       min-width: 70%
   }
+
+  ::ng-deep .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background: purple;
+  }
+

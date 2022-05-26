@@ -1,5 +1,5 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-  <div class="h-screen relative">
+  <div class="relative">
     <img
       src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2080"
     />
@@ -9,7 +9,7 @@
   </div>
   <div>
     <h1 class="text-center text-3xl font-thin mt-10">Today's Mortgage Rates</h1>
-    <div class="grid grid-cols-2 gap-0 mt-10">
+    <div class="grid grid-cols-2 gap-0 mt-5">
       <div class="mx-auto">
         <h1 class="text-2xl mt-5">30-Year-Fixed</h1>
         <table class="table-auto text-center">
@@ -50,7 +50,7 @@
 
       <div>
         <div
-          class="rounded-lg shadow-lg h-36 flex w-3/4 cursor-pointer mx-auto"
+          class="rounded-lg shadow-lg h-36 flex w-3/4 mx-auto cursor-pointer hover:scale-105 transform transition duration-300 ease-out"
           (click)="onClick()"
         >
           <div class="my-auto ml-4">
@@ -64,7 +64,7 @@
           </div>
         </div>
         <div
-          class="rounded-lg shadow-lg h-36 flex w-3/4 cursor-pointer mx-auto"
+          class="rounded-lg shadow-lg h-36 flex w-3/4 mx-auto cursor-pointer hover:scale-105 transform transition duration-300 ease-out"
         >
           <div class="my-auto ml-4">
             <fa-icon [icon]="faQuestion" class="text-5xl"></fa-icon>
@@ -77,6 +77,26 @@
           </div>
         </div>
       </div>
+      <div class="grid col-span-2 ml-10 mr-10 mt-7">
+        <div class="flex">
+        
+        <div class="block mr-5">
+          <h1 class="text-3xl font-semibold mt-2">Connect with a mortgage broker in your community.</h1>
+          <p class="mt-2 font-light text-lg">A mortgage broker can be your trusted guide close to home. They can really get to know you and tailor loan options to meet your needs.</p>
+          <p class="underline cursor-pointer text-purple-600 mt-2">Find Brokers Near Me ></p>
+        </div>
+        <img src="https://images.pexels.com/photos/1181605/pexels-photo-1181605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-4/12" />
+      </div>
+    </div>
+    <div class="grid col-span-2 ml-10 mr-10 mt-5">
+      <div class="flex">      
+        <img src="https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-4/12" />
+      <div class="block ml-5">
+        <h1 class="text-3xl font-semibold mt-2">Make homeownership a reality with down payment assistance.</h1>
+        <p class="underline cursor-pointer text-purple-600 mt-2">Learn About Down Payment Assistance ></p>
+      </div>
+    </div>
+  </div>
     </div>
   </div>
 </div>
