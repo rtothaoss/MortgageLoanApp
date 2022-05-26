@@ -1,7 +1,7 @@
 <div class="sm:grid sm:gap-4 sm:grid-cols-2 sm:grid-rows-1">
     <form [formGroup]="myForm" class="w-96 sm:order-first">
       <div>
-        <h5 for="homePrice" class="titleFont">Home Price</h5>
+        <h5 for="homePrice" class="titleFont mb-2">Home Price</h5>
         <p-inputNumber
           formControlName="homePrice"
           prefix="$"
@@ -18,7 +18,7 @@
       </div>
   
       <div>
-        <h5 for="downPayment" class="titleFont">Down Payment</h5>
+        <h5 for="downPayment" class="titleFont mt-5 mb-2">Down Payment</h5>
         <div class="flex">
           <p-inputNumber
             formControlName="downPayment"
@@ -42,7 +42,7 @@
       </div>
   
       <div>
-        <h5 class="titleFont">Loan Program</h5>
+        <h5 class="titleFont mt-5 mb-2">Loan Program</h5>
         <p-dropdown
           optionLabel="name"
           [options]="loanPrograms"
@@ -53,7 +53,7 @@
       </div>
   
       <div>
-        <h5 for="interestRate" class="titleFont">Interest Rate</h5>
+        <h5 for="interestRate" class="titleFont mt-5 mb-2">Interest Rate</h5>
         <span class="p-input-icon-right" [style]="{ minWidth: '95%' }">
           <i class="pi pi-percentage"></i>
           <input
@@ -73,7 +73,7 @@
     <form [formGroup]="myForm" class="sm:order-last">
       <div class="{{ isVisible ? 'visible' : 'invisible' }}">
         <div>
-          <h5 for="propertyTax" class="titleFont">Property Tax</h5>
+          <h5 for="propertyTax" class="titleFont mb-2">Property Tax</h5>
           <div class="flex">
             <span class="p-input-icon-right p-autocomplete">
               <i class=>/year</i>
@@ -99,7 +99,7 @@
         </div>
   
         <div>
-          <h5 for="homeInsurance" class="titleFont">Home Insurance</h5>
+          <h5 for="homeInsurance" class="titleFont mt-5 mb-2">Home Insurance</h5>
           <span class="p-input-icon-right p-autocomplete">
             <i class=>/year</i>
           <p-inputNumber
@@ -112,7 +112,7 @@
          </span>
         </div>
         <div class="mb-6">
-          <h5 for="homePrice" class="titleFont">HOA</h5>
+          <h5 for="homePrice" class="titleFont mt-5 mb-2">HOA</h5>
           <span class="p-input-icon-right p-autocomplete">
             <i class=>/month</i>
           <p-inputNumber

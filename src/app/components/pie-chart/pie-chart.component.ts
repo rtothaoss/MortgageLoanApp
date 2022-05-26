@@ -101,11 +101,11 @@ export class PieChartComponent implements OnInit, OnDestroy {
         {
           data: dataValues,
           backgroundColor: [
-            '#5CC8FF',
-            '#93867F',
-            '#343633',
-            '#7D70BA',
-            '#DEC1FF',
+            '#643A71',
+            '#8B5FBF',
+            '#D183C9',
+            '#E3879E',
+            '#FEC0CE',
           ],
         },
       ],
@@ -115,25 +115,31 @@ export class PieChartComponent implements OnInit, OnDestroy {
       //display labels on data elements in graph
       plugins: {
         datalabels: {
-          align: 'end',
+          align: 'center',
           anchor: 'center',
           borderRadius: 4,
           backgroundColor: 'rgba(0,0,0,0)',
           color: 'white',
           font: {
             weight: 'bold',
+            size: 16
           },
           formatter: function (value: any, context: any) {
             return '$' + value;
           },
         },
         // display chart title
-        title: {
-          display: true,
-          fontSize: 16,
-        },
+     
         legend: {
-          position: 'bottom',
+          position: 'right',
+          labels : {
+            boxWidth: 40,
+            padding: 30,
+            color: 'black',
+            font: {
+              size: 14,
+            }
+          }
         },
       },
     };
