@@ -2,14 +2,14 @@
   <div class="bg-purple-600 h-20 flex justify-center items-center content-around rounded-t-lg">
     <p class="text-white text-4xl">Estimated Monthly Payment</p>
   </div>
-  <div class="mt-7">
-    <p-chart #chart type="doughnut" [data]="userAppData" [options]="options" width="330"></p-chart>
+  <div class="mt-8">
+    <p-chart #chart type="doughnut" [data]="userAppData" [options]="options" width="300"></p-chart>
   </div>
 
 
-<div class="text-center mt-5 relative bottom-52 left-[4.5rem]">
-  <h1 class="text-lg">Monthly Payment</h1>
-  <h5 class="font-bold">${{monthlyPayments}}</h5>
+<div class="text-center mt-5 relative bottom-48 left-[4.5rem]">
+  <h1 class="text-lg font-extralight">Monthly Payment</h1>
+  <h5 class="font-bold text-xl">${{monthlyPayments}}</h5>
 </div>
 </div>
 

@@ -27,7 +27,10 @@ import {CheckboxModule} from 'primeng/checkbox'
 import {ButtonModule} from 'primeng/button';
 // import { NgApexchartsModule } from 'ng-apexcharts'
 import { ChartModule } from 'primeng/chart'
-import { PanelModule } from "primeng/panel"
+import { PanelModule } from "primeng/panel";
+import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects'
 
 
 @NgModule({
@@ -61,7 +64,10 @@ import { PanelModule } from "primeng/panel"
     CheckboxModule,
     ButtonModule,
     ChartModule,
-    PanelModule
+    PanelModule,
+    StoreModule.forRoot({}, {}),
+    StoreRouterConnectingModule.forRoot(),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
