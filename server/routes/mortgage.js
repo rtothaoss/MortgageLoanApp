@@ -22,6 +22,15 @@ router.post('/', (req, res, next) => {
     ).catch(error => next(error));
 })
 
+router.get('/:loanNumber', (req, res, next) => {
+    const filter = { loanNumber : req.params.loanNumber }
+    Mortgage.find(filter).then(
+        (result) => {
+            res.json(result)
+        }
+    ).catch(error => next(error))
+})
+
 //updating either totalMonthly or remainingLoan
 router.put('/:loanNumber', (req, res, next) => {
     const filter = { loanNumber : req.params.loanNumber }

@@ -76,7 +76,7 @@ export class PieChartComponent implements OnInit, OnDestroy {
       this.monthlyPrinciple.toFixed(0),
       this.monthlyInterest.toFixed(0),
     ];
-    let chartLabels: Array<string> = ['Principle', 'Interest'];
+    let chartLabels: Array<string> = ['Principal', 'Interest'];
 
     if (this.hoa > 0) {
       dataValues.push(this.hoa.toFixed(0));
@@ -131,7 +131,7 @@ export class PieChartComponent implements OnInit, OnDestroy {
         // display chart title
      
         legend: {
-          position: 'right',
+          position: 'left',
           labels : {
             boxWidth: 40,
             padding: 30,

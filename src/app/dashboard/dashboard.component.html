@@ -49,16 +49,22 @@
           <div class="grid grid-cols-3 grid-rows-3 mt-10 ml-5 mr-4">
             <div class="h-28 text-lg font-light">Principal And Interest</div>
             <div class="text-lg text-center">$1,253.90</div>
-            <div class="text-lg row-span-2">Pie Chart Goes Here</div>
+            <div class="text-lg row-span-2 pr-20">
+              
+              <p-chart #chart type="doughnut" [data]="userAppData" [options]="options" width="200"></p-chart>
+
+
+
+            </div>
             <div class="text-lg font-light">Total Payment</div>
             <div class="text-lg text-center">$1,253.90</div>
             <div class="text-lg font-light">Interest Paid YTD</div>
             <div class="text-lg text-center">$1,642.13</div>
             <div class="block">
-              <div class="text-lg underline text-purple-600">
+              <div class="text-lg underline text-purple-600 cursor-pointer">
                 Ready to refinance?
               </div>
-              <div class="text-lg underline text-purple-600">
+              <div class="text-lg underline text-purple-600 cursor-pointer">
                 Ready to purchase?
               </div>
             </div>
@@ -82,7 +88,7 @@
             libero felis vitae ligula.
           </p>
           <div class="flex text-purple-600 items-center">
-            <p class="text-lg">Checkout more loan questions</p>
+            <p class="text-lg cursor-pointer">Checkout more loan questions</p>
             <fa-icon [icon]="arrowRight" class="ml-1"></fa-icon>
           </div>
         </div>
@@ -99,7 +105,7 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id
             sapien finibus, porta ligula sed, hendrerit dolor.
           </p>
-          <p class="text-white underline">Checkout refi options</p>
+          <p class="text-white underline cursor-pointer">Checkout refi options</p>
         </div>
       </div>
     </div>
@@ -114,7 +120,7 @@
                   [icon]="faDollar"
                   class="text-white text-6xl"
                 ></fa-icon>
-                <h5 class="text-white leading-tight font-medium mb-2 text-4xl">
+                <h5 class="text-white leading-tight font-medium mt-5 text-4xl">
                   Loan Activity
                 </h5>
               </div>

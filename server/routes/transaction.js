@@ -11,6 +11,15 @@ router.get('/', (req, res, next) => {
     ).catch(error => next(error));
 })
 
+router.get('/:loanNumber', (req, res, next) => {
+    const filter = { loanNumber: req.params.loanNumber }
+    Transaction.find(filter).then(
+        (result) => {
+            res.json(result)
+        }
+    ).catch(error => next(error))
+})
+
 //need admin auth on this to add it 
 router.post('/', (req, res, next) => {
     console.log(req.body.loanNumber)
