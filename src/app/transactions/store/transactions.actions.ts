@@ -16,4 +16,4 @@ export class FetchTransactions implements Action {
 }
 
 
-export type TransactionsActions = | SetTransactions;
+export type TransactionsActions = | SetTransactions | FetchTransactions;

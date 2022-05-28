@@ -31,6 +31,8 @@ import { PanelModule } from "primeng/panel";
 import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects'
+import * as fromApp from './store/app.reducer'
+import { TransactionEffects} from './transactions/store/transactions.effects'
 
 
 @NgModule({
@@ -65,9 +67,9 @@ import { EffectsModule } from '@ngrx/effects'
     ButtonModule,
     ChartModule,
     PanelModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(fromApp.appReducer),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([TransactionEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
