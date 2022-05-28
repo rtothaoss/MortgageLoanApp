@@ -33,6 +33,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects'
 import * as fromApp from './store/app.reducer'
 import { TransactionEffects} from './transactions/store/transactions.effects'
+import { DashboardEffects } from './dashboard/store/dashboard.effects';
 
 
 @NgModule({
@@ -69,7 +70,7 @@ import { TransactionEffects} from './transactions/store/transactions.effects'
     PanelModule,
     StoreModule.forRoot(fromApp.appReducer),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([TransactionEffects])
+    EffectsModule.forRoot([TransactionEffects, DashboardEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

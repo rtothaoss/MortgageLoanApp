@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons';
 import { faDollar, faDollarSign } from '@fortawesome/free-solid-svg-icons'
-
-import { Chart } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Store } from '@ngrx/store';
 import { UIChart } from 'primeng/chart';
+import { map, Subscription } from 'rxjs';
+import { Mortgage } from '../models/mortgage.model';
+import * as fromApp from '../store/app.reducer'
+import * as DashboardActions from '../dashboard/store/dashboard.actions'
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +26,11 @@ export class DashboardComponent implements OnInit {
   arrowRight = faArrowAltCircleRight;
   faDollar = faDollarSign;
 
-  constructor() {
+  mortgage: Mortgage[]
+  subscription: Subscription;
+
+
+  constructor(private store: Store<fromApp.AppState>) {
 
     let dataValues = [
       this.monthlyPrinciple.toFixed(0),
@@ -81,6 +87,21 @@ export class DashboardComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+    this.subscription = this.store
+    .select('dashboard')
+    .pipe(map(dashboardState => dashboardState.dashboard))
+    .subscribe((dashboard: Mortgage[]) => {
+      this.mortgage = dashboard
+    })
+
+    this.store.dispatch(new DashboardActions.FetchMortgage())
+
+  }
+
+
+  logger() {
+    console.log(this.mortgage)
   }
 
 }
