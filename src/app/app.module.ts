@@ -57,6 +57,7 @@ import { DashboardEffects } from './dashboard/store/dashboard.effects';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     InputTextModule,
