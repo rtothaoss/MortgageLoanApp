@@ -11,6 +11,8 @@ const db = require('./db/config')
 const PORT = process.env.HOST_PORT
 const HOST_NAME = process.env.HOST_NAME
 
+// app.set('view engine', 'ejs');
+
 //Middleware
 app.use(helmet());
 app.use(cors());

@@ -3,34 +3,14 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../db/models/User')
 
-router.get('/', (req, res, next) => {
-    User.find().then(
-        (product) => {
-            console.log(product)
-            res.json(product);
-        }
-    ).catch(error => next(error));
-})
-
-//need admin auth on this to add it 
-router.post('/', (req, res, next) => {
-    console.log(req.body.loanNumber)
-    const user = new User(req.body);
-    user.save().then(
-        (result) => {
-            res.json(result);
-        }
-    ).catch(error => next(error));
-})
-
 router.post('/signup', (req, res, next) => {
     let value = Math.random() * 1000
-
-    const email = req.body.email;
-    const password = req.body.password;
+    
+    const loanNumber = value.toFixed(0)
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
-    const loanNumber = value.toFixed(0)
+    const email = req.body.email;
+    const password = req.body.password;
 
     bcrypt
     .hash(password, 12)
@@ -49,5 +29,49 @@ router.post('/signup', (req, res, next) => {
         ).catch(error => next(error));
     })
 })
+
+router.get('/', (req, res, next) => {
+    const userEmail = req.body.email
+    const userPassword = req.body.password
+    const filter = { email : userEmail}
+
+    User.findOne(filter).then(
+        (user) => {
+            if(!user) return res.status(400).json({msg: 'User does not exist'})
+           
+            console.log(user)
+            
+
+            bcrypt
+            .compare( userPassword, user.password )
+            .then(doMatch => {
+
+                if(doMatch) {
+                    
+                    // req.session.isLoggedIn = true;
+                    // req.session.user = user;
+                    return res.status(200).json({msg: "login success"})
+                  }
+                  return res.status(401).json({msg: "not logged in"})
+            })
+        },
+   
+
+   
+    ).catch(error => next(error));
+})
+
+//need admin auth on this to add it 
+router.post('/', (req, res, next) => {
+    console.log(req.body.loanNumber)
+    const user = new User(req.body);
+    user.save().then(
+        (result) => {
+            res.json(result);
+        }
+    ).catch(error => next(error));
+})
+
+
 
 module.exports = router;
