@@ -34,6 +34,7 @@ import { EffectsModule } from '@ngrx/effects'
 import * as fromApp from './store/app.reducer'
 import { TransactionEffects} from './transactions/store/transactions.effects'
 import { DashboardEffects } from './dashboard/store/dashboard.effects';
+import { AuthEffects } from './auth/store/auth.effects';
 
 
 @NgModule({
@@ -71,7 +72,7 @@ import { DashboardEffects } from './dashboard/store/dashboard.effects';
     PanelModule,
     StoreModule.forRoot(fromApp.appReducer),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([TransactionEffects, DashboardEffects])
+    EffectsModule.forRoot([TransactionEffects, DashboardEffects, AuthEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
