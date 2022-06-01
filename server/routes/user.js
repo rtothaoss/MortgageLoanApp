@@ -4,9 +4,9 @@ const bcrypt = require('bcryptjs');
 const User = require('../db/models/User')
 
 router.post('/signup', (req, res, next) => {
-    let value = Math.random() * 1000
+    let value ='abc' + (Math.random() * 1000).toFixed(0)
     
-    const loanNumber = value.toFixed(0)
+    const loanNumber = value
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const email = req.body.email;
@@ -30,7 +30,7 @@ router.post('/signup', (req, res, next) => {
     })
 })
 
-router.get('/', (req, res, next) => {
+router.post('/login', (req, res, next) => {
     const userEmail = req.body.email
     const userPassword = req.body.password
     const filter = { email : userEmail}
@@ -50,7 +50,7 @@ router.get('/', (req, res, next) => {
                     
                     // req.session.isLoggedIn = true;
                     // req.session.user = user;
-                    return res.status(200).json({msg: "login success"})
+                    return res.status(200).json({id: user.id, email: user.email, loanNumber: user.loanNumber})
                   }
                   return res.status(401).json({msg: "not logged in"})
             })
@@ -62,15 +62,15 @@ router.get('/', (req, res, next) => {
 })
 
 //need admin auth on this to add it 
-router.post('/', (req, res, next) => {
-    console.log(req.body.loanNumber)
-    const user = new User(req.body);
-    user.save().then(
-        (result) => {
-            res.json(result);
-        }
-    ).catch(error => next(error));
-})
+// router.post('/', (req, res, next) => {
+//     console.log(req.body.loanNumber)
+//     const user = new User(req.body);
+//     user.save().then(
+//         (result) => {
+//             res.json(result);
+//         }
+//     ).catch(error => next(error));
+// })
 
 
 
