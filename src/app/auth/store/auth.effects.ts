@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import * as authActions from '../store/auth.actions';
-import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import { AuthResponse } from '../../models/authResponse.model'
 
 
@@ -71,4 +71,17 @@ export class AuthEffects {
       })
     );
   });
+
+  logout = createEffect(() => 
+      () => this.actions$.pipe(
+          ofType(authActions.LOGOUT),
+          tap(() => {
+            localStorage.removeItem('userData');
+            this.router.navigate(['/auth']);
+          })
+          
+      ),
+      {dispatch: false}
+      
+  )
 }

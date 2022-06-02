@@ -19,4 +19,5 @@ export class AuthService {
         const url = `${this.BASE_URL}/api/users/login`;
         return this.http.post<User>(url, {email, password})
     }
+
 }

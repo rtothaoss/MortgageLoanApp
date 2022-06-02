@@ -1,4 +1,3 @@
-import { User } from '../../models/user.model';
 import * as AuthActions from '../store/auth.actions';
 import { Action } from '@ngrx/store';
 import { AuthResponse } from '../../models/authResponse.model'
@@ -6,7 +5,7 @@ import { AuthResponse } from '../../models/authResponse.model'
 
 export interface State {
   isAuthenticated: boolean;
-  user: User;
+  user: AuthResponse;
   errorMessage: string;
   isLoading: boolean;
 }
@@ -27,6 +26,31 @@ export function authReducer(state = initialState, incomingAction: Action) {
         ...state,
         isLoading: true,
       };
+      case AuthActions.LOGOUT:
+        return {
+          ...state,
+          user: null
+        };
+        case AuthActions.LOGIN_SUCCESS:
+          const user = new AuthResponse(
+            action.payload.idToken,
+            action.payload.expirationDate,
+            action.payload.loanNumber
+          )
+          return {
+            ...state,
+            isAuthenticated: true,
+            user: user,
+            errorMessage: null,
+            isLoading: false
+          };
+        case AuthActions.LOGIN_FAILURE:
+          return {
+            ...state,
+            user: null,
+            errorMessage: action.payload,
+            loading: false
+          };
     default:
       return state;
   }

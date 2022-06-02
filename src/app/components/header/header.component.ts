@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 // import { faFile } from '@fortawesome/free-regular-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer'
+import * as AuthActions from '../../auth/store/auth.actions'
 
 
 @Component({
@@ -13,9 +16,14 @@ export class HeaderComponent implements OnInit {
  
   faUser = faUser;
 
-  constructor() { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
   }
+
+  onLogout() {
+    this.store.dispatch(new AuthActions.Logout());
+  }
+
 
 }
