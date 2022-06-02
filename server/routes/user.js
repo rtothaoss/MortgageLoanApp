@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../db/models/User')
+const jwt = require('jsonwebtoken')
+
+
 
 router.post('/signup', (req, res, next) => {
     let value ='abc' + (Math.random() * 1000).toFixed(0)
@@ -39,18 +42,29 @@ router.post('/login', (req, res, next) => {
         (user) => {
             if(!user) return res.status(400).json({msg: 'User does not exist'})
            
-            console.log(user)
+    
+
+           const PRIVATE_TOKEN = process.env.PRIVATE_KEY.replace(/\\n/g, '\n')
+           
+
+            const jwtBearerToken = jwt.sign({user}, PRIVATE_TOKEN, {
+                algorithm: 'RS256',
+                expiresIn: 120,
+                subject: user.loanNumber
+            })
+
+
             
 
             bcrypt
             .compare( userPassword, user.password )
             .then(doMatch => {
 
-                if(doMatch) {
+                if(doMatch) {            
                     
                     // req.session.isLoggedIn = true;
                     // req.session.user = user;
-                    return res.status(200).json({id: user.id, email: user.email, loanNumber: user.loanNumber})
+                    return res.status(200).json({idToken: jwtBearerToken, expiresIn: 120, loanNumber: user.loanNumber})
                   }
                   return res.status(401).json({msg: "not logged in"})
             })
@@ -75,3 +89,6 @@ router.post('/login', (req, res, next) => {
 
 
 module.exports = router;
+
+
+

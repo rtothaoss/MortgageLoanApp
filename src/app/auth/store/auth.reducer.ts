@@ -1,6 +1,8 @@
 import { User } from '../../models/user.model';
 import * as AuthActions from '../store/auth.actions';
 import { Action } from '@ngrx/store';
+import { AuthResponse } from '../../models/authResponse.model'
+
 
 export interface State {
   isAuthenticated: boolean;

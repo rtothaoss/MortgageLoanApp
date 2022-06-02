@@ -4,6 +4,24 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import * as authActions from '../store/auth.actions';
 import { catchError, map, Observable, of, switchMap } from 'rxjs';
+import { AuthResponse } from '../../models/authResponse.model'
+
+
+
+const handleAuthentication = (
+  token: string,
+  expirationTime: number,
+  loanNumber: string
+) => {
+  const expirationDate = new Date(new Date().getTime() + expirationTime * 1000);
+  const user = new AuthResponse(token, expirationDate, loanNumber)
+  localStorage.setItem('userData', JSON.stringify(user));
+  return new authActions.LoginSuccess({
+      token: token,
+      expirationDate: expirationDate,
+      loanNumber: loanNumber
+  })
+};
 
 const handleError = (errorRes: any) => {
   let errorMessage = 'An unknown error occurred!';
@@ -41,7 +59,11 @@ export class AuthEffects {
       }),
       map((user) => {
         console.log(user);
-        return new authActions.LoginSuccess({ token: user.token });
+        return handleAuthentication(
+          user.idToken,
+          user.expiresIn,
+          user.loanNumber,
+        );
       }),
       catchError((errorRes) => {
         console.log(errorRes);
