@@ -38,6 +38,8 @@ testem.log
 /typings
 .env
 .env.dist
+/keys
+/keys/*
 
 # System files
 .DS_Store
