@@ -13,6 +13,8 @@ export class SetTransactions implements Action {
 
 export class FetchTransactions implements Action {
     readonly type = FETCH_TRANSACTIONS;
+    
+    constructor(public payload: any){}
 }
 
 

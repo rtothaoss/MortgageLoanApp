@@ -7,16 +7,7 @@ export interface State {
   }
   
   const initialState: State = {
-    transactions: [{
-        "loanNumber": "",
-        "dateReceived": "",
-        "totalAmountReceived": "",
-        "principal": "",
-        "interest": "",
-        "pmi": "",
-        "escrow": "",
-        "fees": ""
-  }]
+    transactions: []
   };
 
 export function transactionReducer(
