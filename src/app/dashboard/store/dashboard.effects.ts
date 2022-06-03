@@ -7,6 +7,7 @@ import * as DashboardActions from '../store/dashboard.actions'
 import { Mortgage } from '../../models/mortgage.model';
 import { map, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { DashboardService } from './dashboard.service';
 
 @Injectable()
 export class DashboardEffects {
@@ -14,12 +15,13 @@ export class DashboardEffects {
     fetchDashboard = createEffect(() => {
         return this.actions$.pipe(
             ofType(DashboardActions.FETCH_DASHBOARD),
-            switchMap(() => {
-                return this.http.get<Mortgage[]>(
-                    `${environment.serverUrl}/api/mortgages/`
-                )
+            map((action: DashboardActions.FetchMortgage) => action.payload),
+            switchMap((payload) => {
+                console.log(payload)
+                return this.dashboardService.getDashboard(payload)
             }),
             map((dashboard) => {
+                console.log(dashboard)
                 return new DashboardActions.SetMortgage(dashboard)
             })
         )
@@ -30,6 +32,7 @@ export class DashboardEffects {
   constructor(
     private actions$: Actions,
     private http: HttpClient,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
+    private dashboardService: DashboardService
   ) {}
 }

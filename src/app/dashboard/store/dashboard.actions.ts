@@ -12,6 +12,8 @@ export class SetMortgage implements Action {
 
 export class FetchMortgage implements Action {
     readonly type = FETCH_DASHBOARD;
+    
+    constructor(public payload: any) {}
 }
 
 export type DashboardActions = | SetMortgage | FetchMortgage;

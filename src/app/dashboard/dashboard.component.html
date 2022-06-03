@@ -16,7 +16,7 @@
             <div class="grid grid-cols-2 grid-rows-2 gap-1">
               <div class="flex h-20 items-center justify-center">
                 <h1 class="text-2xl font-extralight">Upcoming Payment:</h1>
-                <p class="font-semibold ml-2 text-2xl">$1,253.90</p>
+                <p class="font-semibold ml-2 text-2xl">${{totalMonthlyPayment}}</p>
               </div>
               <div class="flex items-center justify-center">
                 <button
@@ -49,7 +49,7 @@
           </div>
           <div class="grid grid-cols-3 grid-rows-3 mt-10 ml-5 mr-4">
             <div class="h-28 text-lg font-light">Principal And Interest</div>
-            <div class="text-lg text-center">$1,253.90</div>
+            <div class="text-lg text-center">${{totalMonthlyPayment}}</div>
             <div class="text-lg row-span-2 pr-20">
               
               <p-chart #chart type="doughnut" [data]="userAppData" [options]="options" width="200"></p-chart>
@@ -58,7 +58,7 @@
 
             </div>
             <div class="text-lg font-light">Total Payment</div>
-            <div class="text-lg text-center">$1,253.90</div>
+            <div class="text-lg text-center">${{totalMonthlyPayment}}</div>
             <div class="text-lg font-light">Interest Paid YTD</div>
             <div class="text-lg text-center">$1,642.13</div>
             <div class="block">
@@ -128,7 +128,7 @@
             </div>
             <div class="grid col-span-2 ml-10">
               <h1 class="text-xl mt-10">May 4</h1>
-              <p class="font-light">Your $1,253.90 payment has been applied</p>
+              <p class="font-light">Your ${{totalMonthlyPayment}} payment has been applied</p>
               <button
                 class="mx-2 text-red-600 font-semibold py-2 px-4 border border-red-600 hover:bg-red-600 hover:text-white hover:border-transparent rounded h-10 w-2/4"
               >
@@ -169,7 +169,7 @@
             <div class="grid grid-cols-2 gap-1 w-full ml-5 items-center">
               <div>
                 <p class="text-lg font-medium">Your Remaining Loan Balance:</p>
-                <p>$155,534.08</p>
+                <p>${{remainingLoanBalance}}</p>
               </div>
               <div>
                 <p class="text-lg font-medium">Rate:</p>

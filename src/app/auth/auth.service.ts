@@ -12,7 +12,7 @@ export class AuthService {
     constructor(private http: HttpClient) {}
 
     getToken(): string {
-        return localStorage.getItem('token')
+        return localStorage.getItem('idToken')
     }
 
     login(email: string, password: string): Observable<any> {

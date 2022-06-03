@@ -7,6 +7,8 @@ import { map, Subscription } from 'rxjs';
 import { Mortgage } from '../models/mortgage.model';
 import * as fromApp from '../store/app.reducer'
 import * as DashboardActions from '../dashboard/store/dashboard.actions'
+import { DashboardService } from './store/dashboard.service';
+import { AuthResponse } from '../models/authResponse.model'
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +22,9 @@ export class DashboardComponent implements OnInit {
 
   monthlyPrinciple: number = 777;
   monthlyInterest: number = 488;
+  remainingLoanBalance: string;
+  totalMonthlyPayment: string;
+  loanNumber: AuthResponse;
 
   public options: any;
 
@@ -29,8 +34,10 @@ export class DashboardComponent implements OnInit {
   mortgage: Mortgage[]
   subscription: Subscription;
 
+  
 
-  constructor(private store: Store<fromApp.AppState>) {
+
+  constructor(private store: Store<fromApp.AppState>, private dashboardService: DashboardService) {
 
     let dataValues = [
       this.monthlyPrinciple.toFixed(0),
@@ -88,20 +95,27 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+    let userData = localStorage.getItem('userData');
+    this.loanNumber = JSON.parse(userData).loanNumber;
+
     this.subscription = this.store
     .select('dashboard')
     .pipe(map(dashboardState => dashboardState.dashboard))
     .subscribe((dashboard: Mortgage[]) => {
       this.mortgage = dashboard
+      this.remainingLoanBalance = dashboard[0].remainingLoanBalance
+      this.totalMonthlyPayment = dashboard[0].totalMonthlyPayment
     })
 
-    this.store.dispatch(new DashboardActions.FetchMortgage())
-
+    this.store.dispatch(new DashboardActions.FetchMortgage(this.loanNumber))
+    
   }
 
 
   logger() {
     console.log(this.mortgage)
+    console.log(this.totalMonthlyPayment)
+    console.log(this.remainingLoanBalance)
   }
 
 }

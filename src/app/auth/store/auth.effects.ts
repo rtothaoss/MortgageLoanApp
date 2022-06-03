@@ -19,7 +19,8 @@ const handleAuthentication = (
   return new authActions.LoginSuccess({
       token: token,
       expirationDate: expirationDate,
-      loanNumber: loanNumber
+      loanNumber: loanNumber,
+      redirect: true
   })
 };
 
@@ -84,4 +85,19 @@ export class AuthEffects {
       {dispatch: false}
       
   )
+
+  redirect = createEffect(() => 
+  () => this.actions$.pipe(
+      ofType(authActions.LOGIN_SUCCESS),
+      tap((authSuccessAction: authActions.LoginSuccess) => {
+        if(authSuccessAction.payload.redirect) {
+          this.router.navigate(['/dashboard']);
+        }
+      })  
+  ),
+  {dispatch: false}
+  
+)
+
+
 }
