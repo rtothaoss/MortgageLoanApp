@@ -63,8 +63,8 @@ export class AuthEffects {
       pipe(
         tap(resData => {
           console.log(resData.expiresIn)
-          // this.authService.setLogoutTimer(+resData.expiresIn * 1000);
-          this.authService.setLogoutTimer(10 * 1000);
+          this.authService.setLogoutTimer(+resData.expiresIn * 1000);
+          // this.authService.setLogoutTimer(10 * 1000);
         }),
       map((user) => {
         console.log(user);
@@ -94,6 +94,8 @@ export class AuthEffects {
           idToken: string,
           loanNumber: string
         } = JSON.parse(localStorage.getItem('userData'));
+
+        
         if(!userData) {
           return {type: 'Dummy'}
         }
@@ -104,13 +106,15 @@ export class AuthEffects {
           userData.loanNumber
         );
 
-        if(loadedUser.token){
+
+        if(loadedUser.idToken){
+          
           const expirationDuration =
           new Date(userData.expirationDate).getTime() -
           new Date().getTime();
         this.authService.setLogoutTimer(expirationDuration);
         return new authActions.LoginSuccess({
-          token: loadedUser.idToken,
+          idToken: loadedUser.idToken,
           expirationDate: loadedUser.expirationDate,
           loanNumber: loadedUser.loanNumber,
           redirect: false

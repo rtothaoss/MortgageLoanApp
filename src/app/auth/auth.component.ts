@@ -34,7 +34,7 @@ export class AuthComponent implements OnInit {
     });
 
     this.myForm.valueChanges.subscribe((form) => {
-      console.log(form);
+      
     });
   }
 
