@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Transaction = require('../db/models/Transaction')
+const authorize = require('../middlewares/auth')
+
+
 
 router.get('/', (req, res, next) => {
     Transaction.find().then(
@@ -11,7 +14,7 @@ router.get('/', (req, res, next) => {
     ).catch(error => next(error));
 })
 
-router.get('/:loanNumber', (req, res, next) => {
+router.get('/:loanNumber', authorize, (req, res, next) => {
     const filter = { loanNumber: req.params.loanNumber }
     Transaction.find(filter).then(
         (result) => {

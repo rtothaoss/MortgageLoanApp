@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Mortgage = require('../db/models/Mortgage');
+const authorize = require('../middlewares/auth')
 
 router.get('/', (req, res, next) => {
     Mortgage.find().then(
@@ -22,7 +23,7 @@ router.post('/', (req, res, next) => {
     ).catch(error => next(error));
 })
 
-router.get('/:loanNumber', (req, res, next) => {
+router.get('/:loanNumber', authorize, (req, res, next) => {
     const filter = { loanNumber : req.params.loanNumber }
     Mortgage.find(filter).then(
         (result) => {
