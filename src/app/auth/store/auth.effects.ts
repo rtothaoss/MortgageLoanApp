@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import * as authActions from '../store/auth.actions';
-import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, map, Observable, of, pipe, switchMap, tap } from 'rxjs';
 import { AuthResponse } from '../../models/authResponse.model'
 
 
@@ -58,6 +58,11 @@ export class AuthEffects {
       switchMap((payload) => {
         return this.authService.login(payload.email, payload.password);
       }),
+      pipe(
+        tap(resData => {
+          console.log(resData)
+          this.authService.setLogoutTimer(+resData.expiresIn * 1000);
+        }),
       map((user) => {
         console.log(user);
         return handleAuthentication(
@@ -70,6 +75,7 @@ export class AuthEffects {
         console.log(errorRes);
         return handleError(errorRes);
       })
+    )
     );
   });
 
@@ -77,6 +83,7 @@ export class AuthEffects {
       () => this.actions$.pipe(
           ofType(authActions.LOGOUT),
           tap(() => {
+            this.authService.clearLogoutTimer();
             localStorage.removeItem('userData');
             this.router.navigate(['/']);
           })

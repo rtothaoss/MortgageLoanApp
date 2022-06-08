@@ -1,5 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Store } from "@ngrx/store";
+import * as fromApp from '../store/app.reducer'
+import * as AuthActions from '../auth/store/auth.actions'
 import { Observable } from "rxjs";
 
 import { User } from '../models/user.model'
@@ -9,7 +12,9 @@ export class AuthService {
 
     private BASE_URL = 'http://localhost:3000'
 
-    constructor(private http: HttpClient) {}
+    private tokenExpirationTimer: any;
+
+    constructor(private http: HttpClient, private store: Store<fromApp.AppState>) {}
 
     getToken(): string {
         let userData = localStorage.getItem('userData')
@@ -29,6 +34,19 @@ export class AuthService {
     login(email: string, password: string): Observable<any> {
         const url = `${this.BASE_URL}/api/users/login`;
         return this.http.post<User>(url, {email, password})
+    }
+
+    setLogoutTimer(expirationDuration: number) {
+        this.tokenExpirationTimer = setTimeout(() => {
+            this.store.dispatch(new AuthActions.Logout())
+        }, expirationDuration)
+    }
+
+    clearLogoutTimer() {
+        if(this.tokenExpirationTimer) {
+            clearTimeout(this.tokenExpirationTimer);
+            this.tokenExpirationTimer = null;
+        }
     }
 
 }
