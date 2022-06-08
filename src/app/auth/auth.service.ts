@@ -30,6 +30,22 @@ export class AuthService {
         let authToken = this.getToken()
         return authToken !== null ? true : false
     }
+    
+    verifyTokenExpiration() {
+        let userData = localStorage.getItem('userData')
+        if(!userData) {
+          return null;
+        }
+        let tokenExpirationDate = JSON.parse(userData).expirationDate
+
+        const newDate = new Date(tokenExpirationDate)
+        const now = new Date()
+
+        if(now > newDate) {
+            localStorage.removeItem('userData')
+        }
+        
+    }
 
     login(email: string, password: string): Observable<any> {
         const url = `${this.BASE_URL}/api/users/login`;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faCalculator, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import { Router } from '@angular/router'
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-landing',
@@ -12,7 +13,7 @@ export class LandingComponent implements OnInit {
   faCalculator = faCalculator;
   faQuestion = faQuestionCircle;
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -20,5 +21,6 @@ export class LandingComponent implements OnInit {
   onClick() {
     this.route.navigate(['/calculator'])
   }
+
 
 }

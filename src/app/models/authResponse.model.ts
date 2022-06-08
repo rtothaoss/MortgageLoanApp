@@ -8,4 +8,11 @@ export class AuthResponse {
         this.expirationDate = expirationDate;
         this.loanNumber = loanNumber;
     }
+
+    get token() {
+        if (!this.expirationDate || new Date() > this.expirationDate) {
+            return null;
+        }
+        return this.token;
+    }
 }

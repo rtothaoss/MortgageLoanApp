@@ -5,6 +5,7 @@ export const LOGIN = '[Auth] Login';
 export const LOGIN_SUCCESS = '[Auth] Login Success';
 export const LOGIN_FAILURE = '[Auth] Login Failure';
 export const LOGOUT = '[Auth] Logout';
+export const AUTO_LOGIN = '[Auth] Auto Login';
 
 export class Login implements Action {
     readonly type = LOGIN;
@@ -27,4 +28,10 @@ export class Logout implements Action {
     readonly type  = LOGOUT;
 }
 
-export type AuthActions = | Login | LoginSuccess | LogInFailure | Logout
+export class AutoLogin implements Action {
+    readonly type = AUTO_LOGIN;
+  }
+
+
+
+export type AuthActions = | Login | LoginSuccess | LogInFailure | Logout | AutoLogin

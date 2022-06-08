@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import * as authActions from '../store/auth.actions';
 import { catchError, map, Observable, of, pipe, switchMap, tap } from 'rxjs';
 import { AuthResponse } from '../../models/authResponse.model'
+import { User } from 'src/app/models/user.model';
 
 
 
@@ -14,6 +15,7 @@ const handleAuthentication = (
   loanNumber: string
 ) => {
   const expirationDate = new Date(new Date().getTime() + expirationTime * 1000);
+  console.log(expirationDate)
   const user = new AuthResponse(token, expirationDate, loanNumber)
   localStorage.setItem('userData', JSON.stringify(user));
   return new authActions.LoginSuccess({
@@ -60,8 +62,9 @@ export class AuthEffects {
       }),
       pipe(
         tap(resData => {
-          console.log(resData)
-          this.authService.setLogoutTimer(+resData.expiresIn * 1000);
+          console.log(resData.expiresIn)
+          // this.authService.setLogoutTimer(+resData.expiresIn * 1000);
+          this.authService.setLogoutTimer(10 * 1000);
         }),
       map((user) => {
         console.log(user);
@@ -79,6 +82,47 @@ export class AuthEffects {
     );
   });
 
+  autoLogin = createEffect(() => {
+
+  this.authService.verifyTokenExpiration()
+
+  return this.actions$.pipe(
+      ofType(authActions.AUTO_LOGIN),
+      map(() => {
+        const userData: {
+          expirationDate: Date,
+          idToken: string,
+          loanNumber: string
+        } = JSON.parse(localStorage.getItem('userData'));
+        if(!userData) {
+          return {type: 'Dummy'}
+        }
+
+        const loadedUser = new AuthResponse(
+          userData.idToken,
+          userData.expirationDate,
+          userData.loanNumber
+        );
+
+        if(loadedUser.token){
+          const expirationDuration =
+          new Date(userData.expirationDate).getTime() -
+          new Date().getTime();
+        this.authService.setLogoutTimer(expirationDuration);
+        return new authActions.LoginSuccess({
+          token: loadedUser.idToken,
+          expirationDate: loadedUser.expirationDate,
+          loanNumber: loadedUser.loanNumber,
+          redirect: false
+
+        })
+
+        }
+        return { type: 'Dummy'}
+      })
+    )
+  })
+
   logout = createEffect(() => 
       () => this.actions$.pipe(
           ofType(authActions.LOGOUT),
@@ -92,6 +136,7 @@ export class AuthEffects {
       {dispatch: false}
       
   )
+
 
   redirect = createEffect(() => 
   () => this.actions$.pipe(
