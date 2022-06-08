@@ -11,7 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LandingComponent } from './landing/landing.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { AuthComponent } from './auth/auth.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SubHeaderComponent } from './components/sub-header/sub-header.component';
 import { TransactionsComponent } from './transactions/transactions.component';
@@ -35,6 +35,7 @@ import * as fromApp from './store/app.reducer'
 import { TransactionEffects} from './transactions/store/transactions.effects'
 import { DashboardEffects } from './dashboard/store/dashboard.effects';
 import { AuthEffects } from './auth/store/auth.effects';
+import { AuthInterceptor } from './auth/auth-interceptor.service';
 
 
 @NgModule({
@@ -74,7 +75,13 @@ import { AuthEffects } from './auth/store/auth.effects';
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([TransactionEffects, DashboardEffects, AuthEffects])
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

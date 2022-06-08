@@ -12,7 +12,18 @@ export class AuthService {
     constructor(private http: HttpClient) {}
 
     getToken(): string {
-        return localStorage.getItem('idToken')
+        let userData = localStorage.getItem('userData')
+        if(!userData) {
+            return null;
+        }
+        let token = JSON.parse(userData).idToken
+        
+        return token
+    }
+
+    get isLoggedIn(): boolean {
+        let authToken = this.getToken()
+        return authToken !== null ? true : false
     }
 
     login(email: string, password: string): Observable<any> {
