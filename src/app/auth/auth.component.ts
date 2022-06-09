@@ -42,7 +42,7 @@ export class AuthComponent implements OnInit {
     if (!this.myForm.valid) {
       return;
     }
-    console.log(this.myForm.value);
+    
     const payload = {
       email: this.myForm.value.email,
       password: this.myForm.value.password,

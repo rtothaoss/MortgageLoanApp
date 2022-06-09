@@ -15,7 +15,7 @@ const handleAuthentication = (
   loanNumber: string
 ) => {
   const expirationDate = new Date(new Date().getTime() + expirationTime * 1000);
-  console.log(expirationDate)
+
   const user = new AuthResponse(token, expirationDate, loanNumber)
   localStorage.setItem('userData', JSON.stringify(user));
   return new authActions.LoginSuccess({
@@ -62,12 +62,12 @@ export class AuthEffects {
       }),
       pipe(
         tap(resData => {
-          console.log(resData.expiresIn)
+         
           this.authService.setLogoutTimer(+resData.expiresIn * 1000);
           // this.authService.setLogoutTimer(10 * 1000);
         }),
       map((user) => {
-        console.log(user);
+        
         return handleAuthentication(
           user.idToken,
           user.expiresIn,
@@ -75,7 +75,7 @@ export class AuthEffects {
         );
       }),
       catchError((errorRes) => {
-        console.log(errorRes);
+        
         return handleError(errorRes);
       })
     )

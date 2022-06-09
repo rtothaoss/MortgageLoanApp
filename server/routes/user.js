@@ -49,7 +49,7 @@ router.post('/login', (req, res, next) => {
 
             const jwtBearerToken = jwt.sign({user}, PRIVATE_TOKEN, {
                 algorithm: 'RS256',
-                expiresIn: 120,
+                expiresIn: 600,
                 subject: user.loanNumber
             })
 
@@ -64,7 +64,7 @@ router.post('/login', (req, res, next) => {
                     
                     // req.session.isLoggedIn = true;
                     // req.session.user = user;
-                    return res.status(200).json({idToken: jwtBearerToken, expiresIn: 120, loanNumber: user.loanNumber})
+                    return res.status(200).json({idToken: jwtBearerToken, expiresIn: 600, loanNumber: user.loanNumber})
                   }
                   return res.status(401).json({msg: "not logged in"})
             })

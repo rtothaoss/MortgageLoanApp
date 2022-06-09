@@ -38,16 +38,11 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <!-- <td class="px-6 py-3">$3,373.47</td>
-                    <td class="px-6 py-3">$1,642.13</td>
-                    <td class="px-6 py-3">$0.00</td>
-                    <td class="px-6 py-3">$0.00</td>
-                    <td class="px-6 py-3">$0.00</td> -->
-                    <td class="px-6 py-3">${{principal}}</td>
-                    <td class="px-6 py-3">${{interest}}</td>
-                    <td class="px-6 py-3">${{pmi}}</td>
-                    <td class="px-6 py-3">${{escrow}}</td>
-                    <td class="px-6 py-3">${{fees}}</td>
+                    <td class="px-6 py-3">${{transactions[0].principal}}</td>
+                    <td class="px-6 py-3">${{transactions[0].interest}}</td>
+                    <td class="px-6 py-3">${{transactions[0].pmi}}</td>
+                    <td class="px-6 py-3">${{transactions[0].escrow}}</td>
+                    <td class="px-6 py-3">${{transactions[0].fees}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -62,7 +57,7 @@
             <h5 class="text-gray-900 text-xl leading-tight mb-2 font-semibold mt-4">Recent Activity</h5>
             <p class="text-lg font-semibold mt-8">May 4</p>
             <p class="text-gray-700 text-base mb-4">
-              Your $1253.90 payment has been applied
+              Your ${{transactions[0].totalAmountReceived}} payment has been applied
             </p>
             <hr class="border-1 border-slate-600 mt-5 items-center text-right mx-auto">
           </div>
@@ -71,35 +66,32 @@
     </div>
   
     <div class="mt-10">
-      <table class="table-auto w-full">
+      <table class="table-fixed w-full">
           <thead>
             <tr>
-              <th class="px-6 py-3">Date Received</th>
-              <th class="px-6 py-3">Total Amount</th>
-              <th class="px-6 py-3">Payment Type</th>
-              <th class="px-6 py-3">Details</th>
-             
+              <th class="px-6 py-3 w-1/4">Date Received</th>
+              <th class="px-6 py-3 w-1/4">Total Amount</th>
+              <th class="px-6 py-3 w-1/4">Payment Type</th>
+              <th class="px-6 py-3 w-1/4">Details</th>
             </tr>
           </thead>
-          <tbody class="text-center">
+          <tbody class="text-center" *ngFor="let transactionEl of transactions, let i = index">
             <tr>
-              <td class="px-6 py-3">May 4, 2022</td>
-              <td class="px-6 py-3">${{totalAmountReceived}}</td>
-              <td class="px-6 py-3">Payment</td>
-              <td class="px-6 py-3">Show</td>
-            </tr>
-            <tr>
-              <td class="px-6 py-3">April 01, 2022</td>
-              <td class="px-6 py-3">$1,253.90</td>
-              <td class="px-6 py-3">Payment</td>
-              <td class="px-6 py-3">Show</td>
-            </tr>
-            <tr>
-                <td class="px-6 py-3">February 28, 2022</td>
-                <td class="px-6 py-3">$1,253.90</td>
+                <td class="px-6 py-3">{{transactionEl.dateReceived}}</td>
+                <td class="px-6 py-3">${{transactionEl.totalAmountReceived}}</td>
                 <td class="px-6 py-3">Payment</td>
-                <td class="px-6 py-3">Show</td>
-              </tr>
+                <td class="px-6 py-3 cursor-pointer" (click)="selectedIndexFx(i)">Show</td>
+              </tr> 
+          
+                <tr *ngIf="i == selectedIndex && showPaymentDetails" class="border bg-gray-100 h-24 mt-8 ml-4 mr-4">
+                  <td><div class="block"><p>Principal</p><p>${{transactions[i].principal}}</p></div></td>
+                  <td><div class="block"><p>Interest</p><p>${{transactions[i].interest}}</p></div></td>
+                  <td><div class="block"><p>Fees</p><p>${{transactions[i].fees}}</p></div></td>
+                  <td><div class="block"><p>Escrow</p><p>${{transactions[i].escrow}}</p></div></td>
+                  
+                </tr>
+                
+
           </tbody>
         </table>
     </div>

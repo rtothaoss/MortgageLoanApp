@@ -5,7 +5,7 @@ const authorize = require('../middlewares/auth')
 
 
 
-router.get('/', (req, res, next) => {
+router.get('/', authorize, (req, res, next) => {
     Transaction.find().then(
         (product) => {
             console.log(product)

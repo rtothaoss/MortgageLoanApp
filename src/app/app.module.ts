@@ -53,7 +53,7 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
     SubHeaderComponent,
     TransactionsComponent,
     PieChartComponent,
-    CalculatorComponent
+    CalculatorComponent,
   ],
   imports: [
     BrowserModule,

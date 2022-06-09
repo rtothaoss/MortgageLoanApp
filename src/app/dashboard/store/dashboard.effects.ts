@@ -17,11 +17,11 @@ export class DashboardEffects {
             ofType(DashboardActions.FETCH_DASHBOARD),
             map((action: DashboardActions.FetchMortgage) => action.payload),
             switchMap((payload) => {
-                console.log(payload)
+                
                 return this.dashboardService.getDashboard(payload)
             }),
             map((dashboard) => {
-                console.log(dashboard)
+                
                 return new DashboardActions.SetMortgage(dashboard)
             })
         )

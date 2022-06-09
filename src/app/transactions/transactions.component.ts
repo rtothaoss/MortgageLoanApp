@@ -15,11 +15,7 @@ import { Transaction } from '../models/transaction.model';
   styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent implements OnInit {
-  principal: string;
-  interest: string;
-  pmi: string;
-  escrow: string;
-  fees: string;
+
   totalAmountReceived: string;
   isActive: boolean = false;
   arrowDown = faArrowAltCircleDown;
@@ -27,6 +23,10 @@ export class TransactionsComponent implements OnInit {
   transactions!: Transaction[];
   subscription!: Subscription;
   loanNumber: string;
+  showPaymentDetails: boolean = false;
+  display: boolean = false
+  selectedIndex: number
+  close: boolean = false;
 
   constructor(private store: Store<fromApp.AppState>) {}
 
@@ -38,13 +38,8 @@ export class TransactionsComponent implements OnInit {
       .select('transactions')
       .pipe(map((transactionState) => transactionState.transactions))
       .subscribe((transactions: Transaction[]) => {
-        this.transactions = transactions;
-        this.principal = transactions[0].principal;
-        this.interest = transactions[0].interest;
-        this.pmi = transactions[0].pmi;
-        this.escrow = transactions[0].escrow;
-        this.fees = transactions[0].fees;
-        this.totalAmountReceived = transactions[0].totalAmountReceived;
+        this.transactions = transactions.slice().reverse();
+
       });
 
     this.store.dispatch(
@@ -56,4 +51,11 @@ export class TransactionsComponent implements OnInit {
     console.log(this.transactions);
     this.isActive = !this.isActive;
   }
+
+
+  selectedIndexFx(index: number){ 
+   this.selectedIndex = index;
+   this.showPaymentDetails = !this.showPaymentDetails
+  }
+  
 }

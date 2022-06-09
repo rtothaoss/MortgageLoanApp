@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons';
 import { faDollar, faDollarSign } from '@fortawesome/free-solid-svg-icons'
 import { Store } from '@ngrx/store';
@@ -9,6 +9,9 @@ import * as fromApp from '../store/app.reducer'
 import * as DashboardActions from '../dashboard/store/dashboard.actions'
 import { DashboardService } from './store/dashboard.service';
 import { AuthResponse } from '../models/authResponse.model'
+import * as moment from 'moment'
+import { Transaction } from '../models/transaction.model';
+import * as TransactionActions from '../transactions/store/transactions.actions'
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +28,7 @@ export class DashboardComponent implements OnInit {
   remainingLoanBalance: string;
   totalMonthlyPayment: string;
   loanNumber: AuthResponse;
+  dueDate: string;
 
   public options: any;
 
@@ -33,6 +37,8 @@ export class DashboardComponent implements OnInit {
 
   mortgage: Mortgage[]
   subscription: Subscription;
+  transactions: Transaction[];
+  transactionSub: Subscription;
 
   
 
@@ -108,14 +114,36 @@ export class DashboardComponent implements OnInit {
     })
 
     this.store.dispatch(new DashboardActions.FetchMortgage(this.loanNumber))
+
+    this.transactionSub = this.store
+    .select('transactions')
+    .pipe(map((transactionState) => transactionState.transactions))
+    .subscribe((transactions: Transaction[]) => {
+      let lastEl = transactions.slice(-1)
+      this.transactions = lastEl;
+    });
+
+    this.store.dispatch(
+      new TransactionActions.FetchTransactions(this.loanNumber)
+    );
+
+    
+
+
+    let currentDate = new Date()
+    currentDate.setDate(1)
+    currentDate.setMonth(new Date().getMonth() + 1)
+    let parsedDate = moment(currentDate).format('MMMM Do YYYY')
+   
+    this.dueDate = parsedDate;
     
   }
+  
 
 
-  logger() {
-    console.log(this.mortgage)
-    console.log(this.totalMonthlyPayment)
-    console.log(this.remainingLoanBalance)
+  consoleLog() {
+    
+    console.log(this.transactions)
   }
 
 }
