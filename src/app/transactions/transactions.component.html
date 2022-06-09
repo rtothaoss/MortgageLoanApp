@@ -1,100 +1,129 @@
 <div class="container mx-auto md:w-8/12">
-    <app-sub-header></app-sub-header>
-    <div class="mt-5">
-      <p class="text-black text-4xl font-semibold">Your Transactions</p>
-    </div>
-  
-    <div class="mb-7 mt-5">
-      <div class="rounded-lg shadow-lg h-full row-span-2 col-span-2">
-        <div class="flex h-full w-full">
-          <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
-            <h5 class="text-gray-900 text-xl leading-tight font-medium mb-4">
-              Your current Year To Date Amount Paid
-            </h5>
-            <p class="text-gray-700 text-base">Total Amount Paid:</p>
-            <h5 class="text-2xl mb-4">$5,1015.60</h5>
-            <button
-              type="button"
-              class="text-base inline-block py-2.5 text-black font-medium leading-tight uppercase rounded"
-              (click)="this.onClick()"
-            >
-              <span *ngIf="!isActive"
-                ><fa-icon [icon]="arrowDown"></fa-icon
-              ></span>
-  
-              <span *ngIf="isActive"> <fa-icon [icon]="arrowUp"></fa-icon></span>
-              Details
-            </button>
-            <div *ngIf="isActive">
-              <table class="table-auto">
-                <thead>
-                  <tr>
-                    <th class="px-6 py-3">Principal</th>
-                    <th class="px-6 py-3">Interest</th>
-                    <th class="px-6 py-3">PMI</th>
-                    <th class="px-6 py-3">Escrow</th>
-                    <th class="px-6 py-3">Fees</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="px-6 py-3">${{transactions[0].principal}}</td>
-                    <td class="px-6 py-3">${{transactions[0].interest}}</td>
-                    <td class="px-6 py-3">${{transactions[0].pmi}}</td>
-                    <td class="px-6 py-3">${{transactions[0].escrow}}</td>
-                    <td class="px-6 py-3">${{transactions[0].fees}}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+  <app-sub-header></app-sub-header>
+  <div class="mt-5">
+    <p class="text-black text-4xl font-semibold">Your Transactions</p>
+  </div>
+
+  <div class="mb-7 mt-5">
+    <div class="rounded-lg shadow-lg h-full row-span-2 col-span-2">
+      <div class="flex h-full w-full">
+        <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
+          <h5 class="text-gray-900 text-xl leading-tight font-medium mb-4">
+            Your current Year To Date Amount Paid
+          </h5>
+          <p class="text-gray-700 text-base">Total Amount Paid:</p>
+          <h5 class="text-2xl mb-4">$5,1015.60</h5>
+          <button
+            type="button"
+            class="text-base inline-block py-2.5 text-black font-medium leading-tight uppercase rounded"
+            (click)="this.onClick()"
+          >
+            <span *ngIf="!isActive"
+              ><fa-icon [icon]="arrowDown"></fa-icon
+            ></span>
+
+            <span *ngIf="isActive"> <fa-icon [icon]="arrowUp"></fa-icon></span>
+            Details
+          </button>
+          <div *ngIf="isActive">
+            <table class="table-auto">
+              <thead>
+                <tr>
+                  <th class="px-6 py-3">Principal</th>
+                  <th class="px-6 py-3">Interest</th>
+                  <th class="px-6 py-3">PMI</th>
+                  <th class="px-6 py-3">Escrow</th>
+                  <th class="px-6 py-3">Fees</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="px-6 py-3">${{ transactions[0].principal }}</td>
+                  <td class="px-6 py-3">${{ transactions[0].interest }}</td>
+                  <td class="px-6 py-3">${{ transactions[0].pmi }}</td>
+                  <td class="px-6 py-3">${{ transactions[0].escrow }}</td>
+                  <td class="px-6 py-3">${{ transactions[0].fees }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
-    <div class="h-96 rounded-lg shadow-lg bg-purple-500 w-full flex place-items-center justify-center">
-      <div class="flex place-content-center h-56">
-          <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
-            <h5 class="text-gray-900 text-xl leading-tight mb-2 font-semibold mt-4">Recent Activity</h5>
-            <p class="text-lg font-semibold mt-8">May 4</p>
-            <p class="text-gray-700 text-base mb-4">
-              Your ${{transactions[0].totalAmountReceived}} payment has been applied
-            </p>
-            <hr class="border-1 border-slate-600 mt-5 items-center text-right mx-auto">
-          </div>
-        </div>
-  
-    </div>
-  
-    <div class="mt-10">
-      <table class="table-fixed w-full">
-          <thead>
-            <tr>
-              <th class="px-6 py-3 w-1/4">Date Received</th>
-              <th class="px-6 py-3 w-1/4">Total Amount</th>
-              <th class="px-6 py-3 w-1/4">Payment Type</th>
-              <th class="px-6 py-3 w-1/4">Details</th>
-            </tr>
-          </thead>
-          <tbody class="text-center" *ngFor="let transactionEl of transactions, let i = index">
-            <tr>
-                <td class="px-6 py-3">{{transactionEl.dateReceived}}</td>
-                <td class="px-6 py-3">${{transactionEl.totalAmountReceived}}</td>
-                <td class="px-6 py-3">Payment</td>
-                <td class="px-6 py-3 cursor-pointer" (click)="selectedIndexFx(i)">Show</td>
-              </tr> 
-          
-                <tr *ngIf="i == selectedIndex && showPaymentDetails" class="border bg-gray-100 h-24 mt-8 ml-4 mr-4">
-                  <td><div class="block"><p>Principal</p><p>${{transactions[i].principal}}</p></div></td>
-                  <td><div class="block"><p>Interest</p><p>${{transactions[i].interest}}</p></div></td>
-                  <td><div class="block"><p>Fees</p><p>${{transactions[i].fees}}</p></div></td>
-                  <td><div class="block"><p>Escrow</p><p>${{transactions[i].escrow}}</p></div></td>
-                  
-                </tr>
-                
-
-          </tbody>
-        </table>
-    </div>
-  
   </div>
-  
+  <div
+    class="h-96 rounded-lg shadow-lg bg-purple-500 w-full flex place-items-center justify-center"
+  >
+    <div class="flex place-content-center h-56">
+      <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+        <h5 class="text-gray-900 text-xl leading-tight mb-2 font-semibold mt-4">
+          Recent Activity
+        </h5>
+        <p class="text-lg font-semibold mt-8">May 4</p>
+        <p class="text-gray-700 text-base mb-4">
+          Your ${{ transactions[0].totalAmountReceived }} payment has been
+          applied
+        </p>
+        <hr
+          class="border-1 border-slate-600 mt-5 items-center text-right mx-auto"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-10">
+    <table class="table-fixed w-full">
+      <thead>
+        <tr>
+          <th class="px-6 py-3 w-1/4">Date Received</th>
+          <th class="px-6 py-3 w-1/4">Total Amount</th>
+          <th class="px-6 py-3 w-1/4">Payment Type</th>
+          <th class="px-6 py-3 w-1/4">Details</th>
+        </tr>
+      </thead>
+      <tbody
+        class="text-center"
+        *ngFor="let transactionEl of transactions; let i = index"
+      >
+        <tr>
+          <td class="px-6 py-3">{{ transactionEl.dateReceived }}</td>
+          <td class="px-6 py-3">${{ transactionEl.totalAmountReceived }}</td>
+          <td class="px-6 py-3">Payment</td>
+          <td class="px-6 py-3 cursor-pointer" (click)="selectedIndexFx(i)">
+            {{i == selectedIndex && showPaymentDetails ? 'Close' : 'Show'}}
+          </td>
+        </tr>
+
+        <tr
+          *ngIf="i == selectedIndex && showPaymentDetails"
+          class="border bg-gray-100 h-24 mt-8 ml-4 mr-4"
+        >
+          <td>
+            <div class="block">
+              <p>Principal</p>
+              <p>${{ transactions[i].principal }}</p>
+            </div>
+          </td>
+          <td>
+            <div class="block">
+              <p>Interest</p>
+              <p>${{ transactions[i].interest }}</p>
+            </div>
+          </td>
+          <td>
+            <div class="block">
+              <p>Fees</p>
+              <p>${{ transactions[i].fees }}</p>
+            </div>
+          </td>
+          <td>
+            <div class="block">
+              <p>Escrow</p>
+              <p>${{ transactions[i].escrow }}</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

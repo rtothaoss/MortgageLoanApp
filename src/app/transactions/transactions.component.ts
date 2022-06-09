@@ -15,7 +15,6 @@ import { Transaction } from '../models/transaction.model';
   styleUrls: ['./transactions.component.css'],
 })
 export class TransactionsComponent implements OnInit {
-
   totalAmountReceived: string;
   isActive: boolean = false;
   arrowDown = faArrowAltCircleDown;
@@ -24,8 +23,8 @@ export class TransactionsComponent implements OnInit {
   subscription!: Subscription;
   loanNumber: string;
   showPaymentDetails: boolean = false;
-  display: boolean = false
-  selectedIndex: number
+  display: boolean = false;
+  selectedIndex: number;
   close: boolean = false;
 
   constructor(private store: Store<fromApp.AppState>) {}
@@ -39,7 +38,6 @@ export class TransactionsComponent implements OnInit {
       .pipe(map((transactionState) => transactionState.transactions))
       .subscribe((transactions: Transaction[]) => {
         this.transactions = transactions.slice().reverse();
-
       });
 
     this.store.dispatch(
@@ -52,10 +50,14 @@ export class TransactionsComponent implements OnInit {
     this.isActive = !this.isActive;
   }
 
-
-  selectedIndexFx(index: number){ 
-   this.selectedIndex = index;
-   this.showPaymentDetails = !this.showPaymentDetails
-  }
+  selectedIndexFx(index: number) {
+    if(this.showPaymentDetails && index !== this.selectedIndex) {
+      this.selectedIndex = index;
+    } else {
+      this.selectedIndex = index;
+      this.showPaymentDetails = !this.showPaymentDetails;
+    }
   
+    
+  }
 }
