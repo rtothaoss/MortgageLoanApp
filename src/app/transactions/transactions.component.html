@@ -12,7 +12,7 @@
             Your current Year To Date Amount Paid
           </h5>
           <p class="text-gray-700 text-base">Total Amount Paid:</p>
-          <h5 class="text-2xl mb-4">$5,1015.60</h5>
+          <h5 class="text-2xl mb-4">${{amountPaidYTD}}</h5>
           <button
             type="button"
             class="text-base inline-block py-2.5 text-black font-medium leading-tight uppercase rounded"
@@ -38,11 +38,11 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-6 py-3">${{ transactions[0].principal }}</td>
-                  <td class="px-6 py-3">${{ transactions[0].interest }}</td>
-                  <td class="px-6 py-3">${{ transactions[0].pmi }}</td>
-                  <td class="px-6 py-3">${{ transactions[0].escrow }}</td>
-                  <td class="px-6 py-3">${{ transactions[0].fees }}</td>
+                  <td class="px-6 py-3">${{ principalPaidYTD }}</td>
+                  <td class="px-6 py-3">${{ interestPaidYTD }}</td>
+                  <td class="px-6 py-3">${{ pmiPaidYTD }}</td>
+                  <td class="px-6 py-3">${{ escrowPaidYTD }}</td>
+                  <td class="px-6 py-3">${{ feesPaidYTD }}</td>
                 </tr>
               </tbody>
             </table>

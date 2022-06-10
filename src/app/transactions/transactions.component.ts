@@ -26,6 +26,13 @@ export class TransactionsComponent implements OnInit {
   display: boolean = false;
   selectedIndex: number;
   close: boolean = false;
+  amountPaidYTD: string;
+  principalPaidYTD: string;
+  interestPaidYTD: string;
+  pmiPaidYTD: string;
+  feesPaidYTD: string;
+  escrowPaidYTD: string;
+
 
   constructor(private store: Store<fromApp.AppState>) {}
 
@@ -38,11 +45,18 @@ export class TransactionsComponent implements OnInit {
       .pipe(map((transactionState) => transactionState.transactions))
       .subscribe((transactions: Transaction[]) => {
         this.transactions = transactions.slice().reverse();
+        this.YTD('totalAmountReceived', 'amountPaidYTD');
+        this.YTD('principal', 'principalPaidYTD');
+        this.YTD('interest', 'interestPaidYTD');
+        this.YTD('pmi', 'pmiPaidYTD');
+        this.YTD('fees', 'feesPaidYTD');
+        this.YTD('escrow', 'escrowPaidYTD');
       });
 
     this.store.dispatch(
       new TransactionActions.FetchTransactions(this.loanNumber)
     );
+    
   }
 
   onClick() {
@@ -57,7 +71,19 @@ export class TransactionsComponent implements OnInit {
       this.selectedIndex = index;
       this.showPaymentDetails = !this.showPaymentDetails;
     }
-  
-    
   }
+
+  
+  YTD(arrValue, ytdValue ) {
+    let x = this.transactions.map(a => +a[arrValue].replace(/[^0-9.]/g, ''));
+    let y = this.total(x)
+    this[ytdValue] = y.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  }
+
+
+  total(values: Array<number>) {
+    const sum = values.reduce((a,b) => {return a + b}, 0)
+    return sum;
+  }
+
 }
