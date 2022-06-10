@@ -188,6 +188,7 @@ export class CalculatorService {
    
 
     this.mortgageInfo.monthlyPayment = monthlyPayments.toFixed(2);
+    console.log(this.mortgageInfo)
     this.mortgageInfoChange.next(this.mortgageInfo)
   }
 }
