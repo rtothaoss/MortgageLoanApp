@@ -8,6 +8,7 @@ import { DocumentsComponent } from './documents/documents.component';
 import { LandingComponent } from './landing/landing.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { AuthGuard } from './auth/auth.guard'
+import { UploadComponent } from './components/upload/upload.component';
 
 const routes: Routes = [
   {path: '', component: LandingComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'documents', component: DocumentsComponent, canActivate: [AuthGuard]},
   {path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuard]},
   {path: 'login', component: AuthComponent},
-  {path: 'calculator', component: CalculatorComponent}
+  {path: 'calculator', component: CalculatorComponent},
+  {path: 'upload', component: UploadComponent}
 ];
 
 @NgModule({

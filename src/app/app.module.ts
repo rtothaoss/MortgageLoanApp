@@ -36,6 +36,9 @@ import { TransactionEffects} from './transactions/store/transactions.effects'
 import { DashboardEffects } from './dashboard/store/dashboard.effects';
 import { AuthEffects } from './auth/store/auth.effects';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
+import { UploadComponent } from './components/upload/upload.component';
+import { DragAndDropDirective } from './drag-and-drop.directive';
+
 
 
 @NgModule({
@@ -54,6 +57,9 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
     TransactionsComponent,
     PieChartComponent,
     CalculatorComponent,
+    UploadComponent,
+    DragAndDropDirective,
+ 
   ],
   imports: [
     BrowserModule,
