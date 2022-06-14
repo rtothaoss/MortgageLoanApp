@@ -26,15 +26,16 @@ mongoose.connection.on("error", () => {
 let gfs, gridFsBucket;
 
 mongoose.connection.once('open', () => {
-    gridFsBucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
-        bucketName: 'documents'
-    });
+    // gridFsBucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
+    //     bucketName: 'documents'
+    // });
     gfs = Grid(mongoose.connection.db)
     gfs.collection('documents')
     console.log('the db connection opened successfully in gridfs')
 });
 
 const getGridFSFiles = id => {
+   
     return new Promise((resolve, reject) => {
       gfs.files.findOne({ _id: mongoose.Types.ObjectId(id) }, (err, files) => {
         if (err) reject(err);
@@ -48,9 +49,12 @@ const getGridFSFiles = id => {
     });
   };
 
-  const createGridFSReadStream = id => {
-    return gridFSBucket.openDownloadStream(mongoose.Types.ObjectId(id));
-  };
+//   const createGridFSReadStream = id => {
+    
+//     console.log(mongoose.Types.ObjectId(id))
+
+//     return gridFSBucket.openDownloadStream(mongoose.Types.ObjectId(id));
+//   };
 
   const storage = new GridFsStorage({
     url: uri,
