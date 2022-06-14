@@ -2,7 +2,7 @@
   <app-sub-header></app-sub-header>
   <div class="mt-5">
     <p class="text-black text-4xl font-semibold">Your Documents</p>
-    <button (click)="consoleLog()">Console Log</button>
+    <button (click)="toggleVisibility()">Visible</button>
   </div>
   <div class="w-3/5 mt-10">
     <p>
@@ -58,7 +58,7 @@
         <h5 class="text-lg text-black">May Mortgage Statement</h5>
         <p class="text-gray-500">Mortgage Statements</p>
       </div>
-      <div class="flex mr-8 my-auto">
+      <div class="flex mr-8 my-auto" (click)="toggleVisibility()">
         <div class="text-center cursor-pointer">
           <fa-icon [icon]="faFile" class="text-3xl"></fa-icon>
           <p class="mx-4">View</p>
@@ -79,9 +79,9 @@
           <p class="text-gray-500">Mortgage Statements</p>
         </div>
         <div class="flex mr-8 my-auto">
-          <div class="text-center cursor-pointer">
+          <div class="text-center cursor-pointer" (click)="toggleVisibility()">
             <fa-icon [icon]="faFile" class="text-3xl"></fa-icon>
-            <p class="mx-4">View</p>
+            <p class="mx-4 cursor-pointer">View</p>
           </div>
           <div class="text-center cursor-pointer">
             <fa-icon [icon]="faFileDown" class="text-3xl"></fa-icon>
@@ -92,9 +92,10 @@
       <hr
       class="border-1 border-gray-400 mt-5 items-center text-right mx-auto"
     />
-    <div class="content" role="main">
+    <div class="{{isVisible ? 'visible' : 'hidden'}} content" role="main">
       <div #viewer class="viewer"></div>
     </div>
   </div>
+
 </div>
 

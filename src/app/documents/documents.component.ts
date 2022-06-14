@@ -27,21 +27,22 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
   id = '62a8d08d02f9ad9dc1123e62';
   document;
   subscription!: Subscription;
+  isVisible: boolean = false;
 
 
   constructor(private store: Store<fromApp.AppState>, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.subscription = this.store.select('documents')
-    .pipe(map((documentState) => documentState.documents))
-    .subscribe((document: any) => {
-      console.log(document)
-      this.document = document;
-    })
+    // this.subscription = this.store.select('documents')
+    // .pipe(map((documentState) => documentState.documents))
+    // .subscribe((document: any) => {
+    //   console.log(document)
+    //   this.document = document;
+    // })
     
-    this.store.dispatch(
-      new DocumentsActions.FetchDocuments(this.id)
-    )
+    // this.store.dispatch(
+    //   new DocumentsActions.FetchDocuments(this.id)
+    // )
 
   }
 
@@ -50,15 +51,10 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
     this.isActive = !this.isActive
   }
 
-
-
-  consoleLog() {
-    console.log(this.document)
+  toggleVisibility() {
+    this.isVisible = !this.isVisible
   }
 
-  getPDF() {
-    
-  }
 
 
   ngAfterViewInit(): void {
@@ -69,7 +65,7 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
       WebViewer({
         path: '../../assets/lib',
       }, this.viewerRef.nativeElement).then(instance => {
-        instance.UI.loadDocument('http://localhost:3000/api/upload/62a8d08d02f9ad9dc1123e62', {
+        instance.UI.loadDocument(`http://localhost:3000/api/upload/${this.id}`, {
           customHeaders: {
             Authorization: "Bearer " + authToken
         }
