@@ -3,7 +3,8 @@ const router = express.Router();
 const  GridFSMiddleware = require('../middlewares/gridfs-middleware');
 const asyncWrapper = require('../utilities/async-wrapper');
 const { getGridFSFiles } = require('../db/config')
-const { createGridFSReadStream } = require('../db/config')
+const authorize = require('../middlewares/auth')
+
 const mongoose = require('mongoose');
 
 
@@ -17,7 +18,7 @@ router.post(
   );
 
   router.get(
-    "/:id",
+    "/:id", authorize,
     asyncWrapper(async (req, res) => {
       const image = await getGridFSFiles(req.params.id);
       if (!image) {
@@ -29,8 +30,9 @@ router.post(
         bucketName: 'documents'
     })
     console.log(req.params.id)
+
     let readStream = bucket.openDownloadStream(mongoose.Types.ObjectId(req.params.id))
-   
+       
       readStream.pipe(res);
     })
   );

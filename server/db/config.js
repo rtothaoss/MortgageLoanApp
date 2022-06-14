@@ -82,4 +82,4 @@ const getGridFSFiles = id => {
 module.exports = mongoose;
 module.exports.storage = storage;
 module.exports.getGridFSFiles = getGridFSFiles;
-module.exports.createGridFSReadStream = createGridFSReadStream;
+// module.exports.createGridFSReadStream = createGridFSReadStream;

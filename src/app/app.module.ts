@@ -38,6 +38,7 @@ import { AuthEffects } from './auth/store/auth.effects';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { UploadComponent } from './components/upload/upload.component';
 import { DragAndDropDirective } from './drag-and-drop.directive';
+import { DocumentsEffects } from './documents/store/documents.effects';
 
 
 
@@ -79,7 +80,7 @@ import { DragAndDropDirective } from './drag-and-drop.directive';
     PanelModule,
     StoreModule.forRoot(fromApp.appReducer),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([TransactionEffects, DashboardEffects, AuthEffects])
+    EffectsModule.forRoot([TransactionEffects, DashboardEffects, AuthEffects, DocumentsEffects])
   ],
   providers: [
     {
