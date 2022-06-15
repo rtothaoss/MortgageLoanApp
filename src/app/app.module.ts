@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Directive, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +39,7 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { UploadComponent } from './components/upload/upload.component';
 import { DragAndDropDirective } from './drag-and-drop.directive';
 import { DocumentsEffects } from './documents/store/documents.effects';
-
+import { FileSelectDirective, FileDropDirective,  FileUploadModule } from 'ng2-file-upload'
 
 
 @NgModule({
@@ -60,7 +60,6 @@ import { DocumentsEffects } from './documents/store/documents.effects';
     CalculatorComponent,
     UploadComponent,
     DragAndDropDirective,
- 
   ],
   imports: [
     BrowserModule,
@@ -80,7 +79,8 @@ import { DocumentsEffects } from './documents/store/documents.effects';
     PanelModule,
     StoreModule.forRoot(fromApp.appReducer),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([TransactionEffects, DashboardEffects, AuthEffects, DocumentsEffects])
+    EffectsModule.forRoot([TransactionEffects, DashboardEffects, AuthEffects, DocumentsEffects]),
+    FileUploadModule
   ],
   providers: [
     {

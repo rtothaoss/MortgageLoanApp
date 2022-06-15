@@ -34,6 +34,15 @@ mongoose.connection.once('open', () => {
     console.log('the db connection opened successfully in gridfs')
 });
 
+let updatedMetaData;
+
+const updateMetadata = id => {
+  updatedMetaData = id;
+  console.log(updatedMetaData)
+}
+
+
+
 const getGridFSFiles = id => {
    
     return new Promise((resolve, reject) => {
@@ -56,15 +65,18 @@ const getGridFSFiles = id => {
 //     return gridFSBucket.openDownloadStream(mongoose.Types.ObjectId(id));
 //   };
 
+
   const storage = new GridFsStorage({
     url: uri,
     cache: true,
     options: { useUnifiedTopology: true },
     file: (req, file) => {
+     
       return new Promise(resolve => {
         const fileInfo = {
           filename: file.originalname,
-          bucketName: "documents"
+          bucketName: "documents",
+          metadata: updatedMetaData
         };
         resolve(fileInfo);
       });
@@ -82,4 +94,5 @@ const getGridFSFiles = id => {
 module.exports = mongoose;
 module.exports.storage = storage;
 module.exports.getGridFSFiles = getGridFSFiles;
+module.exports.updateMetadata = updateMetadata;
 // module.exports.createGridFSReadStream = createGridFSReadStream;

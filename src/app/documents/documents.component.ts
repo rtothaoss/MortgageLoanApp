@@ -24,7 +24,7 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
   arrowUp = faArrowAltCircleUp
   faFile = faFileAlt;
   faFileDown = faFileArrowDown;
-  id = '62a8d08d02f9ad9dc1123e62';
+  id = '62aa19753d9c00a936f0679e';
   document;
   subscription!: Subscription;
   isVisible: boolean = false;
@@ -65,7 +65,7 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
       WebViewer({
         path: '../../assets/lib',
       }, this.viewerRef.nativeElement).then(instance => {
-        instance.UI.loadDocument(`http://localhost:3000/api/upload/${this.id}`, {
+        instance.UI.loadDocument(`http://localhost:3000/api/upload/file/${this.id}`, {
           customHeaders: {
             Authorization: "Bearer " + authToken
         }

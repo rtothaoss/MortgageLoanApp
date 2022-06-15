@@ -1,10 +1,13 @@
 import { Component, Directive, ElementRef, OnInit, ViewChild } from '@angular/core';
-// import { FileUploader } from 'ng2-file-upload';
+import { FileUploader, FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+
 
 import { faFileArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { UploadService } from './upload.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
+const URL = 'http://localhost:3000/api/upload';
 
-// @Directive({ selector: '[ng2FileSelect]' })
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -14,88 +17,68 @@ import { faFileArrowUp } from '@fortawesome/free-solid-svg-icons'
 
 export class UploadComponent implements OnInit {
 
-  faFileArrowUp = faFileArrowUp;
+  uploader:FileUploader;
+  hasBaseDropZoneOver:boolean;
+  hasAnotherDropZoneOver:boolean;
+  response:string;
+ 
+  constructor (private authService: AuthService){
+    // this.uploader = new FileUploader({
+    //   url: URL,
+    //   disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
+    //   formatDataFunctionIsAsync: true,
+    //   formatDataFunction: async (item) => {
+    //     console.log('this runs')
+    //     console.log(item)
+    //     return new Promise( (resolve, reject) => {
+    //       resolve({
+    //         originalname: item._file.name,
+    //         mimetype: item._file.mimetype,
+    //         id: item._file.id,
+    //         size: item._file.size
+           
+    //       });
+    //     });
+    //   }
+    // });
 
-  @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef;
-  files: any[] = [];
+  
+   
 
-  /**
-   * on file drop handler
-   */
-  onFileDropped($event) {
-    this.prepareFilesList($event);
-  }
+    let userData = localStorage.getItem('userData')
+    // let token = JSON.parse(userData).idToken
+    // let newToken = `Bearer ${token}`
 
-  /**
-   * handle file from browsing
-   */
-  fileBrowseHandler(files) {
-    this.prepareFilesList(files);
-  }
+    let token = this.authService.getToken()
+    let newToken = `Bearer ${token}`
 
-  /**
-   * Delete file from files list
-   * @param index (File index)
-   */
-  deleteFile(index: number) {
-    if (this.files[index].progress < 100) {
-      console.log("Upload in progress.");
-      return;
-    }
-    this.files.splice(index, 1);
-  }
+    let loanNumber = JSON.parse(userData).loanNumber
 
-  /**
-   * Simulate the upload process
-   */
-  uploadFilesSimulator(index: number) {
-    setTimeout(() => {
-      if (index === this.files.length) {
-        return;
-      } else {
-        const progressInterval = setInterval(() => {
-          if (this.files[index].progress === 100) {
-            clearInterval(progressInterval);
-            this.uploadFilesSimulator(index + 1);
-          } else {
-            this.files[index].progress += 5;
-          }
-        }, 200);
-      }
-    }, 1000);
-  }
-
-  /**
-   * Convert Files list to normal array list
-   * @param files (Files List)
-   */
-  prepareFilesList(files: Array<any>) {
-    for (const item of files) {
-      item.progress = 0;
-      this.files.push(item);
-    }
-    this.fileDropEl.nativeElement.value = "";
-    this.uploadFilesSimulator(0);
-  }
-
-  /**
-   * format bytes
-   * @param bytes (File size in bytes)
-   * @param decimals (Decimals point)
-   */
-  formatBytes(bytes, decimals = 2) {
-    if (bytes === 0) {
-      return "0 Bytes";
-    }
-    const k = 1024;
-    const dm = decimals <= 0 ? 0 : decimals;
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+    this.uploader = new FileUploader({url: URL, authToken: newToken, headers: [{name:  "loanNumber", value: loanNumber}]});
+ 
+    this.hasBaseDropZoneOver = false;
+    this.hasAnotherDropZoneOver = false;
+ 
+    this.response = '';
+ 
+    this.uploader.response.subscribe( res => this.response = res );
   }
 
   ngOnInit(): void {
       
   }
+ 
+  public fileOverBase(e:any):void {
+    this.hasBaseDropZoneOver = e;
+  }
+ 
+  public fileOverAnother(e:any):void {
+    this.hasAnotherDropZoneOver = e;
+  }
+
+  consoleLog() {
+    console.log('this works')
+  }
+
 
 }
