@@ -3,33 +3,43 @@
   <div class="mt-5">
     <p class="text-black text-4xl font-semibold">File Upload</p>
   </div>
- 
 
-  <div class="row dropzone w-full max-w-md mx-auto mt-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-center">
+  <div
+    class="row dropzone w-full max-w-md mx-auto mt-5 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-center"
+  >
     <fa-icon [icon]="faDownload" class="mr-2 text-6xl"></fa-icon>
-    <h1 class="mt-2">Please upload documents only in 'pdf' or 'docx' format. </h1>
+    <h1 class="mt-2">
+      Please upload documents only in 'pdf' or 'docx' format.
+    </h1>
     <div class="mt-5">
-      <label  for="file-upload" class="bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 ml-1 mr-1 rounded-lg focus:outline-none focus:shadow-outline cursor-pointer">
-        <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader" />
+      <label
+        for="file-upload"
+        class="bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 ml-1 mr-1 rounded-lg focus:outline-none focus:shadow-outline cursor-pointer"
+      >
+        <input
+          id="file-upload"
+          type="file"
+          ng2FileSelect
+          [uploader]="uploader"
+        />
         Select A File
       </label>
     </div>
 
     <div class="col-md-9" style="margin-bottom: 40px">
-    
-
-      <table class="table mx-auto mt-5">
- 
-        <tbody class="flex bg-white shadow-md rounded">
-          <tr *ngFor="let item of uploader.queue">
-           
-            <td class="text-center" >
+      <div class="mx-auto mt-5">
+        <div *ngIf="!response">
+          <div
+            *ngFor="let item of uploader.queue"
+            class="bg-white shadow-lg rounded pt-6 pb-6 w-3/4 mx-auto cursor-pointer hover:scale-105 transform transition duration-300 ease-out"
+          >
+            <div class="text-center">
               <strong>{{ item?.file?.name }}</strong>
-            </td>
-            <td *ngIf="uploader.options.isHTML5" nowrap>
+            </div>
+            <div *ngIf="uploader.options.isHTML5" nowrap>
               {{ item?.file?.size / 1024 / 1024 | number: ".2" }} MB
-            </td>
-            <td *ngIf="uploader.options.isHTML5">
+            </div>
+            <div *ngIf="uploader.options.isHTML5">
               <div class="progress" style="margin-bottom: 0">
                 <div
                   class="progress-bar"
@@ -37,39 +47,36 @@
                   [ngStyle]="{ width: item.progress + '%' }"
                 ></div>
               </div>
-            </td>
-   
-            <td class="block mt-2 ">
-         
-              <button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-1 mr-1 rounded-lg focus:outline-none focus:shadow-outline"
-                type="button"
-                (click)="item.upload()"
-                [disabled]="item.isReady || item.isUploading || item.isSuccess"
-              >
-                Upload
-              </button>
+            </div>
 
-              <!-- <button
-                type="button"
-                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-bold rounded-lg  py-2 px-4 ml-1 mr-1 dark:focus:ring-yellow-900"
-                (click)="item.cancel()"
-                [disabled]="!item.isUploading"
+            <div class="mt-2 flex justify-evenly">
+              <div>
+                <button
+                  class="bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-lg"
+                  (click)="item.upload()"
+                  [disabled]="
+                    item.isReady || item.isUploading || item.isSuccess
+                  "
                 >
-                Cancel
-              </button> -->
-
-              <button
-                type="button"
-                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-bold rounded-lg  py-2 px-4 ml-1 mr-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                (click)="item.remove()"
-              >
-                Remove
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                  Upload
+                </button>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="bg-transparent hover:bg-red-500 text-red-500 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded-lg"
+                  (click)="item.remove()"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div *ngIf="response" class="mt-4">
+      <h1 class="text-2xl font-semibold">File Upload Successful!</h1>
+    </div>
     </div>
   </div>
 

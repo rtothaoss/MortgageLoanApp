@@ -38,8 +38,6 @@ export class UploadComponent implements OnInit {
     this.hasBaseDropZoneOver = false;
     this.hasAnotherDropZoneOver = false;
  
-    this.response = '';
- 
     this.uploader.response.subscribe( res => this.response = res );
   }
 

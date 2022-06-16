@@ -44,7 +44,7 @@ router.post(
     let bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
         bucketName: 'documents'
     })
-    console.log(req.params.id)
+   
 
     let readStream = bucket.openDownloadStream(mongoose.Types.ObjectId(req.params.id))
        
