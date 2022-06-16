@@ -32,7 +32,7 @@ app.get('/api', (req, res) => {
 app.use('/api/mortgages', require('./routes/mortgage'));
 app.use('/api/users', require('./routes/user'));
 app.use('/api/transactions', require('./routes/transaction'));
-app.use('/api/upload', require('./routes/documents'));
+app.use('/api/documents', require('./routes/documents'));
 
 
 // app.get('/api/*', (req, res) => {

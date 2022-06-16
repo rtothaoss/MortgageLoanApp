@@ -13,11 +13,11 @@ router.post(
     "/",
     authorize,
     
-    (req,res,next) => {
-        // console.log(req.headers.loanNumber)
-        updateMetadata(req.headers.loannumber)
-      next();
-    },
+    // (req,res,next) => {
+    //     // console.log(req.headers.loanNumber)
+    //     updateMetadata(req.headers.loanNumber)
+    //   next();
+    // },
     [GridFSMiddleware()],
     asyncWrapper(async (req, res) => {
      

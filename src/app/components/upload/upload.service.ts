@@ -16,7 +16,7 @@ export class UploadService {
 
     showFileNames(id: string): Observable<any> {
         console.log('this runs')
-        const url = `${this.BASE_URL}/api/upload`;
+        const url = `${this.BASE_URL}/api/documents`;
         return this.http.get(url)
     }
 

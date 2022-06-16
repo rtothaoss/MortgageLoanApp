@@ -11,6 +11,7 @@ import { AuthService } from '../auth/auth.service';
 import { AuthInterceptor } from '../auth/auth-interceptor.service';
 
 
+
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
@@ -19,12 +20,12 @@ import { AuthInterceptor } from '../auth/auth-interceptor.service';
 export class DocumentsComponent implements OnInit, AfterViewInit {
   
   @ViewChild('viewer') viewerRef: ElementRef;
-  isActive: boolean = false;
+  isActive: boolean = false; 
   arrowDown = faArrowAltCircleDown
   arrowUp = faArrowAltCircleUp
   faFile = faFileAlt;
   faFileDown = faFileArrowDown;
-  id = '62aa19753d9c00a936f0679e';
+  id = '62aa5180561fb497ab451dd1';
   document;
   subscription!: Subscription;
   isVisible: boolean = false;
@@ -65,7 +66,7 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
       WebViewer({
         path: '../../assets/lib',
       }, this.viewerRef.nativeElement).then(instance => {
-        instance.UI.loadDocument(`http://localhost:3000/api/upload/file/${this.id}`, {
+        instance.UI.loadDocument(`http://localhost:3000/api/documents/file/${this.id}`, {
           customHeaders: {
             Authorization: "Bearer " + authToken
         }
