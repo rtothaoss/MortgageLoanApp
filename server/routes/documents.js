@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const  GridFSMiddleware = require('../middlewares/gridfs-middleware');
 const asyncWrapper = require('../utilities/async-wrapper');
-const { getGridFSFiles, updateMetadata } = require('../db/config')
+const { getGridFSFiles, getAllGridFsFiles } = require('../db/config')
 const authorize = require('../middlewares/auth')
 const Document = require('../db/models/Document')
 
@@ -12,12 +12,6 @@ const mongoose = require('mongoose');
 router.post(
     "/",
     authorize,
-    
-    // (req,res,next) => {
-    //     // console.log(req.headers.loanNumber)
-    //     updateMetadata(req.headers.loanNumber)
-    //   next();
-    // },
     [GridFSMiddleware()],
     asyncWrapper(async (req, res) => {
      
@@ -29,6 +23,15 @@ router.post(
       
     })
   );
+
+  router.get('/files/:loanNumber', authorize, (req, res, next) => {
+      const filter = { metaData : req.params.loanNumber }
+      Document.find(filter).then(
+        (result) => {
+          res.json(result)
+        }
+      ).catch(error => next(error))
+  })
 
 
 

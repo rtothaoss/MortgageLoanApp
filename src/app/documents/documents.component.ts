@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { map, Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { AuthInterceptor } from '../auth/auth-interceptor.service';
+import { Document } from '../models/document.model';
 
 
 
@@ -26,7 +27,7 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
   faFile = faFileAlt;
   faFileDown = faFileArrowDown;
   id = '62aa5180561fb497ab451dd1';
-  document;
+  documents;
   subscription!: Subscription;
   isVisible: boolean = false;
 
@@ -34,16 +35,16 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
   constructor(private store: Store<fromApp.AppState>, private authService: AuthService) { }
 
   ngOnInit(): void {
-    // this.subscription = this.store.select('documents')
-    // .pipe(map((documentState) => documentState.documents))
-    // .subscribe((document: any) => {
-    //   console.log(document)
-    //   this.document = document;
-    // })
+    this.subscription = this.store.select('documents')
+    .pipe(map((documentState) => documentState.documents))
+    .subscribe((documents: Document) => {
+      
+      this.documents = documents;
+    })
     
-    // this.store.dispatch(
-    //   new DocumentsActions.FetchDocuments(this.id)
-    // )
+    this.store.dispatch(
+      new DocumentsActions.FetchDocuments(this.id)
+    )
 
   }
 
@@ -56,10 +57,14 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
     this.isVisible = !this.isVisible
   }
 
+  consoleLog() {
+    console.log(this.documents)
+  }
+
 
 
   ngAfterViewInit(): void {
-    console.log(this.document)
+    
     const authToken = this.authService.getToken();
 
 

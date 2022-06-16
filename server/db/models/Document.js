@@ -2,20 +2,26 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const DocumentsSchema = new Schema({
-    loanNumber: {
-        type: String,
-        required: true
+    length: {
+        type: Number
+    },
+    chunkSize: {
+        type: Number
+    },
+    uploadDate: {
+        type: Date
     },
     filename: {
-        type: String,
-        required: true
+        type: String
     },
-    id : {
-        type: String,
-        required: true
+    contentType: {
+        type: String
+    },
+    metadata: {
+        type: String
     }
 })
 
-const DocumentsModel = mongoose.model('documents', DocumentsSchema)
+const DocumentsModel = mongoose.model('documents.files', DocumentsSchema)
 
 module.exports = DocumentsModel;

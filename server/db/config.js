@@ -58,6 +58,24 @@ const getGridFSFiles = id => {
     });
   };
 
+const getAllGridFsFiles = loanNumber => {
+
+  const filter = { metaData : loanNumber }
+
+  return new Promise((resolve, reject) => {
+    gfs.files.find({metaData : loanNumber}, (err, files) => {
+      if(err) reject(err);
+
+      if(!files || files.length === 0){
+        resolve(null)
+      } else {
+        resolve(files)
+      }
+
+    })
+  })
+}
+
 //   const createGridFSReadStream = id => {
     
 //     console.log(mongoose.Types.ObjectId(id))
@@ -97,5 +115,6 @@ const getGridFSFiles = id => {
 module.exports = mongoose;
 module.exports.storage = storage;
 module.exports.getGridFSFiles = getGridFSFiles;
+module.exports.getAllGridFsFiles = getAllGridFsFiles;
 // module.exports.updateMetadata = updateMetadata;
 // module.exports.createGridFSReadStream = createGridFSReadStream;
