@@ -21,20 +21,28 @@ import { Document } from '../models/document.model';
 export class DocumentsComponent implements OnInit, AfterViewInit {
   
   @ViewChild('viewer') viewerRef: ElementRef;
+
   isActive: boolean = false; 
   arrowDown = faArrowAltCircleDown
   arrowUp = faArrowAltCircleUp
   faFile = faFileAlt;
   faFileDown = faFileArrowDown;
-  id = '62aa5180561fb497ab451dd1';
+  
   documents;
   subscription!: Subscription;
   isVisible: boolean = false;
+  selectedIndex: number;
+  showDocumentDetails: boolean = false;
+  webViewerInstance;
 
 
   constructor(private store: Store<fromApp.AppState>, private authService: AuthService) { }
 
   ngOnInit(): void {
+
+    let userData = localStorage.getItem('userData')
+    let loanNumber = JSON.parse(userData).loanNumber
+
     this.subscription = this.store.select('documents')
     .pipe(map((documentState) => documentState.documents))
     .subscribe((documents: Document) => {
@@ -43,9 +51,13 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
     })
     
     this.store.dispatch(
-      new DocumentsActions.FetchDocuments(this.id)
+      new DocumentsActions.FetchDocuments(loanNumber)
     )
 
+  }
+
+  closeDocument() {
+    this.showDocumentDetails = !this.showDocumentDetails
   }
 
   onClick() {
@@ -57,26 +69,40 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
     this.isVisible = !this.isVisible
   }
 
-  consoleLog() {
-    console.log(this.documents)
+
+  selectedIndexFx(index: number) {
+    this.showDocumentDetails = !this.showDocumentDetails
+
+    let authToken = this.authService.getToken();
+    let id = this.documents[index]._id
+    let path = `http://localhost:3000/api/documents/file/${id}`
+
+    this.webViewerInstance.UI.loadDocument(path, {
+      customHeaders: {
+              Authorization: "Bearer " + authToken
+      }
+    })
+
+    
   }
 
 
 
   ngAfterViewInit(): void {
     
-    const authToken = this.authService.getToken();
-
 
       WebViewer({
-        path: '../../assets/lib',
+        path: '../../../assets/lib',
+        useDownloader:false
+        
       }, this.viewerRef.nativeElement).then(instance => {
-        instance.UI.loadDocument(`http://localhost:3000/api/documents/file/${this.id}`, {
-          customHeaders: {
-            Authorization: "Bearer " + authToken
-        }
-        })
+    
+        this.webViewerInstance = instance
+          
+        instance.UI.setTheme('dark')
+    
       })
+
   }
 
 }

@@ -25,7 +25,9 @@ router.post(
   );
 
   router.get('/files/:loanNumber', authorize, (req, res, next) => {
-      const filter = { metaData : req.params.loanNumber }
+    const filter = { metaData : req.params.loanNumber }
+    console.log('this is loan number')
+    console.log(req.params.loanNumber)
       Document.find(filter).then(
         (result) => {
           res.json(result)

@@ -16,6 +16,7 @@ export class DocumentsService {
 
     getDocuments(id: string): Observable<any> {
         console.log('this runs')
+        console.log(id)
         const url = `${this.BASE_URL}/api/documents/files/${id}`;
         return this.http.get(url)
     }
