@@ -45,7 +45,7 @@ export class PieChartComponent implements OnInit, OnDestroy {
     this.monthlyInterest = this.calcService.getMonthlyInterest();
 
     this.mortgageInfoChangeSub = this.calcService.mortgageInfoChange.subscribe((value) => {
-      console.log(value)
+
       this.monthlyPrinciple = +value.monthlyPrinciple,
       this.monthlyInterest = +value.monthlyInterest,
       this.taxes = value.propertyTax
@@ -60,7 +60,7 @@ export class PieChartComponent implements OnInit, OnDestroy {
 
       this.includeTaxesAndInsuranceChange =
       this.calcService.includeTaxesAndInsuranceChange.subscribe((value) => {
-        console.log(value + ' inside sub')
+
         this.showTaxesAndInsurance = value;
        
       });
@@ -147,7 +147,7 @@ export class PieChartComponent implements OnInit, OnDestroy {
   }
 
   onUpdate() {
-    console.log('it works');
+ 
   }
 
   ngOnDestroy(): void {

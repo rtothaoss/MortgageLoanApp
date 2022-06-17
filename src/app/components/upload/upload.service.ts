@@ -15,7 +15,7 @@ export class UploadService {
     constructor(private http: HttpClient) {}
 
     showFileNames(id: string): Observable<any> {
-        console.log('this runs')
+      
         const url = `${this.BASE_URL}/api/documents`;
         return this.http.get(url)
     }

@@ -6,7 +6,7 @@ const authorize = require('../middlewares/auth')
 router.get('/', (req, res, next) => {
     Mortgage.find().then(
         (product) => {
-            console.log(product)
+       
             res.json(product);
         }
     ).catch(error => next(error));
@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 
 //need admin auth on this to add it 
 router.post('/', (req, res, next) => {
-    console.log(req.body.loanNumber)
+
     const mortgage = new Mortgage(req.body);
     mortgage.save().then(
         (result) => {
@@ -46,8 +46,7 @@ router.put('/:loanNumber', (req, res, next) => {
         update["remainingLoanBalance"] = req.body.remainingLoanBalance;
     }
 
-    console.log(filter)
-    console.log(update)
+
     Mortgage.findOneAndUpdate(filter, update, { new: true }).then(
         (result) => {
             res.json(result);

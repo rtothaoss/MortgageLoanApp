@@ -14,11 +14,11 @@ export class DocumentsEffects {
       ofType(DocumentsActions.FETCH_DOCUMENTS),
       map((action: DocumentsActions.FetchDocuments) => action.payload),
       switchMap((payload) => {
-        console.log(payload);
+       
         return this.documentsService.getDocuments(payload);
       }),
       map((documents) => {
-        console.log(documents);
+        
         return new DocumentsActions.SetDocuments(documents);
       })
     );

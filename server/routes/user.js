@@ -75,16 +75,6 @@ router.post('/login', (req, res, next) => {
     ).catch(error => next(error));
 })
 
-//need admin auth on this to add it 
-// router.post('/', (req, res, next) => {
-//     console.log(req.body.loanNumber)
-//     const user = new User(req.body);
-//     user.save().then(
-//         (result) => {
-//             res.json(result);
-//         }
-//     ).catch(error => next(error));
-// })
 
 
 

@@ -34,12 +34,6 @@ mongoose.connection.once('open', () => {
     console.log('the db connection opened successfully in gridfs')
 });
 
-// let updatedMetaData;
-
-// const updateMetadata = id => {
-//   updatedMetaData = id;
-//   console.log(updatedMetaData)
-// }
 
 
 

@@ -21,32 +21,10 @@ export class AppComponent implements OnInit {
   constructor(private userService: UserService, private store: Store<fromApp.AppState>) {
 
 
-  
 
-    // this.userService.test().pipe(take(1)).subscribe(
-    //   (res) => {
-    //     console.log(res)
-    //   },
-    //   (error) => {
-    //     console.log(error)
-    //   }
-    // );
-
-    // this.subscriptions.push(this.userService.test().subscribe(
-    //   res => {
-    //     console.log(res)
-    //   },
-    //   error => {
-    //     console.log(error)
-    //   }
-    // ))
 
   }
 
-  // ngOnDestroy(): void {
-  //   this.subscriptions.forEach((subscription) => {
-  //     subscription.unsubscribe();
-  //   })
-  // }
+
 
 }

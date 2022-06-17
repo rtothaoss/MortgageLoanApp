@@ -76,7 +76,7 @@ export class CalculatorService {
 
 
   calculateMonthlyPayment() {
-    console.log(this.mortgageInputs)
+  
     let principle = this.mortgageInputs.homePrice - this.mortgageInfo.downPayment;
 
     if (this.mortgageInfo.homePrice != this.mortgageInputs.homePrice) {
@@ -188,7 +188,7 @@ export class CalculatorService {
    
 
     this.mortgageInfo.monthlyPayment = monthlyPayments.toFixed(2);
-    console.log(this.mortgageInfo)
+  
     this.mortgageInfoChange.next(this.mortgageInfo)
   }
 }

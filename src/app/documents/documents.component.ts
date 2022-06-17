@@ -10,6 +10,7 @@ import { map, Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { AuthInterceptor } from '../auth/auth-interceptor.service';
 import { Document } from '../models/document.model';
+import { LocalStorageService } from '../services/localStorage';
 
 
 
@@ -34,16 +35,17 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
   selectedIndex: number;
   showDocumentDetails: boolean = false;
   webViewerInstance;
-  datesArray = ['April 1, 2022', 'May 1, 2022', 'June 1, 2022']
+  datesArray = ['April 1, 2022', 'May 1, 2022', 'June 1, 2022', 'July 1, 2022', 'August 1, 2022', 'September 1, 2022']
   
 
 
-  constructor(private store: Store<fromApp.AppState>, private authService: AuthService) { }
+  constructor(private store: Store<fromApp.AppState>, private authService: AuthService, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
 
-    let userData = localStorage.getItem('userData')
-    let loanNumber = JSON.parse(userData).loanNumber
+
+
+    let loanNumber = this.localStorageService.getLoanNumber()
 
     this.subscription = this.store.select('documents')
     .pipe(map((documentState) => documentState.documents))
@@ -63,17 +65,12 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
 
   }
 
-  consoleLog() {
-    
-    console.log(this.documents)
-  }
-
   closeDocument() {
     this.showDocumentDetails = !this.showDocumentDetails
   }
 
   onClick() {
-    console.log(this.isActive)
+  
     this.isActive = !this.isActive
   }
 

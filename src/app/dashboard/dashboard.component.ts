@@ -141,9 +141,6 @@ export class DashboardComponent implements OnInit {
   
 
 
-  consoleLog() {
-    
-    console.log(this.transactions)
-  }
+
 
 }

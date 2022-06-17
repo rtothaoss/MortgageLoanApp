@@ -8,7 +8,7 @@ const authorize = require('../middlewares/auth')
 router.get('/', authorize, (req, res, next) => {
     Transaction.find().then(
         (product) => {
-            console.log(product)
+            
             res.json(product);
         }
     ).catch(error => next(error));
@@ -25,7 +25,7 @@ router.get('/:loanNumber', authorize, (req, res, next) => {
 
 //need admin auth on this to add it 
 router.post('/', (req, res, next) => {
-    console.log(req.body.loanNumber)
+  
     const transaction = new Transaction(req.body);
     transaction.save().then(
         (result) => {

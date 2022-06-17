@@ -8,6 +8,7 @@ import { map, Subscription } from 'rxjs';
 import * as fromApp from '../store/app.reducer';
 import * as TransactionActions from '../transactions/store/transactions.actions';
 import { Transaction } from '../models/transaction.model';
+import { LocalStorageService } from '../services/localStorage';
 
 @Component({
   selector: 'app-transactions',
@@ -34,11 +35,10 @@ export class TransactionsComponent implements OnInit {
   escrowPaidYTD: string;
 
 
-  constructor(private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<fromApp.AppState>, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
-    let userData = localStorage.getItem('userData');
-    this.loanNumber = JSON.parse(userData).loanNumber;
+    let loanNumber = this.localStorageService.getLoanNumber()
 
     this.subscription = this.store
       .select('transactions')
@@ -54,13 +54,13 @@ export class TransactionsComponent implements OnInit {
       });
 
     this.store.dispatch(
-      new TransactionActions.FetchTransactions(this.loanNumber)
+      new TransactionActions.FetchTransactions(loanNumber)
     );
     
   }
 
   onClick() {
-    console.log(this.transactions);
+  
     this.isActive = !this.isActive;
   }
 
