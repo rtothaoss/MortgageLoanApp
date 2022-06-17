@@ -34,6 +34,8 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
   selectedIndex: number;
   showDocumentDetails: boolean = false;
   webViewerInstance;
+  datesArray = ['April 1, 2022', 'May 1, 2022', 'June 1, 2022']
+  
 
 
   constructor(private store: Store<fromApp.AppState>, private authService: AuthService) { }
@@ -45,15 +47,25 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
 
     this.subscription = this.store.select('documents')
     .pipe(map((documentState) => documentState.documents))
-    .subscribe((documents: Document) => {
+    .subscribe((documents: Document[]) => {
       
       this.documents = documents;
+      const newArr = this.documents.map((x, index) => ({...x, date: this.datesArray[index]}))
+      this.documents = newArr;
+      
     })
     
     this.store.dispatch(
       new DocumentsActions.FetchDocuments(loanNumber)
     )
 
+    this.documents.map(object =>  {return {...object, color: 'red'}})
+
+  }
+
+  consoleLog() {
+    
+    console.log(this.documents)
   }
 
   closeDocument() {
@@ -75,6 +87,7 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
 
     let authToken = this.authService.getToken();
     let id = this.documents[index]._id
+    
     let path = `http://localhost:3000/api/documents/file/${id}`
 
     this.webViewerInstance.UI.loadDocument(path, {

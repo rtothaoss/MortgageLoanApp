@@ -6,6 +6,7 @@ export class Document {
     public contentType: string;
     public metaData: string;
 
+
     constructor( length: number, chunkSize: number, uploadDate: Date, filename: string, contentType: string, metaData: string) {
         this.length = length,
         this.chunkSize = chunkSize,

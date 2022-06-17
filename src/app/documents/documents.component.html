@@ -2,7 +2,7 @@
   <app-sub-header></app-sub-header>
   <div class="mt-5">
     <p class="text-black text-4xl font-semibold">Your Documents</p>
-  
+    <button (click)="consoleLog()">Console Log</button>
   </div>
   <div class="w-3/5 mt-10">
     <p>
@@ -72,8 +72,8 @@
     <div *ngFor="let document of documents; let i = index">
       <div class="w-full flex justify-between mt-4">
         <div class="ml-8">
-          <p class="text-gray-500">May 18,2022</p>
-          <h5 class="text-lg text-black">May Mortgage Statement</h5>
+          <p class="text-gray-500">{{document.date}}</p>
+          <h5 class="text-lg text-black">{{document.date.split(" ")[0]}} Mortgage Statement</h5>
           <p class="text-gray-500">Mortgage Statements</p>
         </div>
         <div class="flex mr-8 my-auto" (click)="selectedIndexFx(i)">
