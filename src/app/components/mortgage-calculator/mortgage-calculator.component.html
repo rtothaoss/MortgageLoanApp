@@ -1,4 +1,4 @@
-<div class="sm:grid sm:gap-4 sm:grid-cols-2 sm:grid-rows-1">
+<div class="sm:grid sm:gap-4 sm:grid-cols-1 sm:grid-rows-1 items-center">
     <form [formGroup]="myForm" class="w-96 sm:order-first">
       <div>
         <h5 for="homePrice" class="titleFont mb-2">Home Price</h5>
@@ -48,13 +48,13 @@
           [options]="loanPrograms"
           optionValue="code"
           formControlName="loanProgram"
-          [style]="{ minWidth: '95%' }"
+          [style]="{ minWidth: '100%' }"
         ></p-dropdown>
       </div>
   
       <div>
         <h5 for="interestRate" class="titleFont mt-5 mb-2">Interest Rate</h5>
-        <span class="p-input-icon-right" [style]="{ minWidth: '95%' }">
+        <span class="p-input-icon-right" [style]="{ minWidth: '100%' }">
           <i class="pi pi-percentage"></i>
           <input
             type="text"
@@ -64,14 +64,23 @@
           />
         </span>
       </div>
-      <div>
+      <!-- <div>
         <h5 class="mt-5 mb-1" for="toggleSection">{{ isVisible ? "Advanced" : "Basic" }}</h5>
         <p-inputSwitch (click)="toggleSection()">Advanced</p-inputSwitch>
-      </div>
-    </form>
+      </div> -->
+    
   
-    <form [formGroup]="myForm" class="sm:order-last">
-      <div class="{{ isVisible ? 'visible' : 'invisible' }}">
+      <div class="pb-5 mt-7 mb-4">
+        <p-checkbox
+          name="taxes"
+          value="taxes"
+          label="Include Taxes and Insurance"
+          formControlName="taxesAndInsurance"
+          class="text-lg"
+        ></p-checkbox>
+      </div>
+ 
+ 
         <div>
           <h5 for="propertyTax" class="titleFont mb-2">Property Tax</h5>
           <div class="flex">
@@ -124,23 +133,15 @@
           ></p-inputNumber>
           </span>
         </div>
-        <div class="pt-2 pb-5">
+        <!-- <div class="pt-2 pb-5">
           <p-checkbox
             name="pmi"
             value="pmi"
             label="Include PMI"
             formControlName="pmi"
           ></p-checkbox>
-        </div>
-        <div class="pb-5">
-          <p-checkbox
-            name="taxes"
-           
-            value="taxes"
-            label="Include Taxes and Insurance"
-            formControlName="taxesAndInsurance"
-          ></p-checkbox>
-        </div>
-      </div>
+        </div> -->
+
+  
     </form>
   </div>

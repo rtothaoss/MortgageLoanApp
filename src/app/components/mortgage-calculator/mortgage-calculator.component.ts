@@ -27,7 +27,7 @@ interface LoanPrograms {
 
 export class MortgageCalculatorComponent implements OnInit, OnDestroy {
 
-  public isVisible = false;
+  public isVisible = true;
   myForm!: FormGroup;
   loanPrograms!: LoanPrograms[];
 
@@ -83,9 +83,9 @@ export class MortgageCalculatorComponent implements OnInit, OnDestroy {
     });
   }
 
-  toggleSection() {
-    this.isVisible = !this.isVisible;
-  }
+  // toggleSection() {
+  //   this.isVisible = !this.isVisible;
+  // }
 
   onUpdateInputs() {
     const value = this.myForm.value;

@@ -1,10 +1,10 @@
 .p-autocomplete{
-    min-width: 95%
+    min-width: 100%
   }
 
 
   .p-downpayment{
-     min-width: 70%;
+     min-width: 75%;
   }
 
   .p-interestRate {
@@ -16,7 +16,7 @@
   }
 
   .p-propertyTax1 {
-      min-width: 70%
+      min-width: 75%
   }
 
   ::ng-deep .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
