@@ -3,7 +3,7 @@ const router = express.Router();
 const Mortgage = require('../db/models/Mortgage');
 const authorize = require('../middlewares/auth')
 
-router.get('/', (req, res, next) => {
+router.get('/', authorize, (req, res, next) => {
     Mortgage.find().then(
         (product) => {
        
@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 })
 
 //need admin auth on this to add it 
-router.post('/', (req, res, next) => {
+router.post('/', authorize, (req, res, next) => {
 
     const mortgage = new Mortgage(req.body);
     mortgage.save().then(

@@ -43,8 +43,9 @@ export class DashboardComponent implements OnInit {
   
 
 
-  constructor(private store: Store<fromApp.AppState>, private dashboardService: DashboardService) {
+  constructor(private store: Store<fromApp.AppState>, private dashboardService: DashboardService) {}
 
+  constructChart() {
     let dataValues = [
       this.monthlyPrinciple.toFixed(0),
       this.monthlyInterest.toFixed(0),
@@ -97,7 +98,7 @@ export class DashboardComponent implements OnInit {
         },
       },
     };
-   }
+  }
 
   ngOnInit(): void {
 
@@ -121,6 +122,9 @@ export class DashboardComponent implements OnInit {
     .subscribe((transactions: Transaction[]) => {
       let lastEl = transactions.slice(-1)
       this.transactions = lastEl;
+      this.monthlyInterest = +lastEl[0].interest
+      this.monthlyPrinciple = +lastEl[0].principal
+      this.constructChart();
     });
 
     this.store.dispatch(

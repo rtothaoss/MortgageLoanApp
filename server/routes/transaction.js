@@ -24,7 +24,7 @@ router.get('/:loanNumber', authorize, (req, res, next) => {
 })
 
 //need admin auth on this to add it 
-router.post('/', (req, res, next) => {
+router.post('/', authorize, (req, res, next) => {
   
     const transaction = new Transaction(req.body);
     transaction.save().then(
