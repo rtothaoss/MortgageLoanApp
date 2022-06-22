@@ -28,6 +28,7 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
   arrowUp = faArrowAltCircleUp
   faFile = faFileAlt;
   faFileDown = faFileArrowDown;
+
   
   documents;
   subscription!: Subscription;
