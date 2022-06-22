@@ -7,6 +7,10 @@
      min-width: 75%;
   }
 
+  .p-downpaymentMobile {
+    min-width: 60%
+  }
+
   .p-interestRate {
       min-width: 20%
   }

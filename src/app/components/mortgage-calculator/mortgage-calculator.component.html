@@ -1,5 +1,5 @@
 <div class="sm:grid sm:gap-4 sm:grid-cols-1 sm:grid-rows-1 items-center">
-    <form [formGroup]="myForm" class="w-96 sm:order-first">
+    <form [formGroup]="myForm" class="w-72 sm:w-96 sm:order-first">
       <div>
         <h5 for="homePrice" class="titleFont mb-2">Home Price</h5>
         <p-inputNumber
@@ -26,7 +26,7 @@
             prefix="$"
             [style]="{ width: '100%' }"
             [inputStyle]="{ width: '100%' }"
-            class="p-downpayment"
+            class="min-w-[60%] sm:min-w-[75%]"
           ></p-inputNumber>
   
           <span class="p-input-icon-right">
