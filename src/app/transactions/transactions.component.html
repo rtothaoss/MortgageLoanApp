@@ -1,6 +1,6 @@
 <div class="container mx-auto md:w-8/12">
   <app-sub-header></app-sub-header>
-  <div class="mt-5">
+  <div class="mt-5 text-center sm:text-left">
     <p class="text-black text-4xl font-semibold">Your Transactions</p>
   </div>
 
@@ -89,7 +89,7 @@
           <td class="px-6 py-3">{{ transactionEl.dateReceived }}</td>
           <td class="px-6 py-3">${{ transactionEl.totalAmountReceived }}</td>
           <td class="px-6 py-3">Payment</td>
-          <td class="px-6 py-3 cursor-pointer" (click)="selectedIndexFx(i)">
+          <td class="{{i == selectedIndex && showPaymentDetails ? 'underline font-semibold' : 'no-underline'}} px-6 py-3 cursor-pointer" (click)="selectedIndexFx(i)">
             {{i == selectedIndex && showPaymentDetails ? 'Close' : 'Show'}}
           </td>
         </tr>
