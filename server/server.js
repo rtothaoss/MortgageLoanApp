@@ -8,8 +8,8 @@ const app = express();
 const db = require('./db/config');
 
 
-const PORT = process.env.HOST_PORT || 3000
-const HOST_NAME = process.env.HOST_NAME
+// const PORT = process.env.HOST_PORT || 3000
+// const HOST_NAME = process.env.HOST_NAME
 
 // app.set('view engine', 'ejs');
 
@@ -39,6 +39,9 @@ app.use('/api/documents', require('./routes/documents'));
 //     res.send('Hello from api/whatever you want')
 // })
 
-app.listen(PORT, () => {
+const host = '0.0.0.0';
+const port = process.env.PORT || 3000;
+
+app.listen(port, host, () => {
     console.log(`Listening at http://${HOST_NAME}:${PORT}`);
 })
