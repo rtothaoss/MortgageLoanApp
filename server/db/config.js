@@ -14,7 +14,7 @@ const uri = `mongodb+srv://${username}:${password}@cluster0.vc0io.mongodb.net/Mo
 //     console.log('connected to mongodb')
 // });
 
-mongoose.connect(uri, (err) => {
+mongoose.connect(process.env.MONGODB_URI, (err) => {
     if(err) throw err;
     console.log('connected to mongodb')
 });
@@ -79,7 +79,7 @@ const getAllGridFsFiles = loanNumber => {
 
 
   const storage = new GridFsStorage({
-    url: uri,
+    url: process.env.MONGODB_URI,
     cache: true,
     options: { useUnifiedTopology: true },
     file: (req, file) => {
