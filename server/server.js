@@ -8,7 +8,7 @@ const app = express();
 const db = require('./db/config');
 
 
-const PORT = process.env.HOST_PORT
+const PORT = process.env.HOST_PORT || 3000
 const HOST_NAME = process.env.HOST_NAME
 
 // app.set('view engine', 'ejs');
