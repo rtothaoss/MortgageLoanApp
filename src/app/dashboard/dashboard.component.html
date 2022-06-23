@@ -1,31 +1,31 @@
 <div class="container mx-auto md:w-8/12">
   <app-sub-header></app-sub-header>
-  <div class="mt-5">
+  <div class="mt-5 text-center sm:text-left">
     <p class="text-black text-4xl font-semibold">Your Dashboard</p>
   </div>
 
-  <div class="grid grid-rows-4 grid-cols-3 gap-10">
+  <div class="grid grid-cols-1 gap-10  sm:grid-rows-4 sm:grid-cols-3 sm:gap-10">
     <div class="rounded-lg shadow-lg h-full row-span-2 col-span-2">
       <div class="flex h-full w-full">
-        <div class="block p-6 rounded-lg shadow-lg bg-white w-full">
+        <div class="block sm:p-6 rounded-lg shadow-lg bg-white w-full">
           <h5 class="text-gray-900 text-3xl leading-tight font-bold mb-2">
             Loan Info
           </h5>
-          <div class="border bg-gray-100 h-48 mt-8 ml-4 mr-4">
+          <div class="border bg-gray-100 h-64 mt-4 ml-2 mr-2 sm:mt-8 sm:ml-4 sm:mr-4">
             <div class="grid grid-cols-2 grid-rows-2 gap-1">
-              <div class="flex h-20 items-center justify-center">
-                <h1 class="text-2xl font-extralight">Upcoming Payment:</h1>
-                <p class="font-semibold ml-2 text-2xl">${{totalMonthlyPayment}}</p>
+              <div class="flex h-24 sm:h-20 items-center justify-center">
+                <h1 class="text-lg sm:text-2xl font-extralight">Upcoming Payment:</h1>
+                <p class="font-semibold ml-2 text-lg sm:text-2xl">${{totalMonthlyPayment}}</p>
               </div>
               <div class="flex items-center justify-center">
                 <button
                   type="button"
-                  class="text-lg inline-block px-6 py-2.5 bg-red-600 text-white font-medium leading-tight uppercase rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                  class="text-sm sm:text-lg inline-block px-6 py-2.5 bg-red-600 text-white font-medium leading-tight uppercase rounded shadow-md hover:bg-red-600 hover:shadow-lg focus:bg-red-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
                   Make A Payment
                 </button>
               </div>
-              <div class="flex items-center justify-evenly">
+              <div class="flex sm:items-center sm:justify-evenly">
                 <div class="block">
                   <p class="font-light">Payment Due Date:</p>
                   <p class="font-medium">{{dueDate}}</p>
@@ -49,7 +49,7 @@
           <div class="grid grid-cols-3 grid-rows-3 mt-10 ml-5 mr-4">
             <div class="h-28 text-lg font-light">Principal And Interest</div>
             <div class="text-lg text-center">${{totalMonthlyPayment}}</div>
-            <div class="text-lg row-span-2 pr-20">
+            <div class="text-lg row-span-2 pr-20 invisible sm:visible">
               
               <p-chart #chart type="doughnut" [data]="userAppData" [options]="options" width="200"></p-chart>
 
@@ -61,10 +61,10 @@
             <div class="text-lg font-light">Interest Paid YTD</div>
             <div class="text-lg text-center">$1,642.13</div>
             <div class="block">
-              <div class="text-lg underline text-purple-600 cursor-pointer">
+              <div class="sm:text-lg underline text-purple-600 cursor-pointer">
                 Ready to refinance?
               </div>
-              <div class="text-lg underline text-purple-600 cursor-pointer">
+              <div class="sm:text-lg underline text-purple-600 cursor-pointer">
                 Ready to purchase?
               </div>
             </div>
@@ -73,7 +73,7 @@
       </div>
     </div>
 
-    <div class="h-72 max-w-lg rounded-lg shadow-lg bg-white">
+    <div class="grid row-span-2 sm:row-span-1 col-span-2 sm:col-span-1 h-72 max-w-lg rounded-lg shadow-lg bg-white ml-1 mr-1 sm:ml-0 sm:mr-0">
       <div class="flex h-full w-full">
         <div class="block p-6">
           <h5
@@ -95,7 +95,7 @@
       </div>
     </div>
 
-    <div class="h-72 max-w-lg rounded-lg shadow-lg bg-black">
+    <div class="grid row-span-2 sm:row-span-1 col-span-2 sm:col-span-1 h-72 max-w-lg rounded-lg shadow-lg bg-black ml-1 mr-1 sm:ml-0 sm:mr-0">
       <div class="flex h-full w-full">
         <div class="block p-6">
           <h5 class="text-white text-4xl leading-tight font-medium mb-2">
@@ -110,17 +110,17 @@
       </div>
     </div>
 
-    <div class="h-72 rounded-lg shadow-lg col-span-2">
+    <div class="h-72 rounded-lg shadow-lg col-span-2 ml-1 mr-1 sm:ml-0 sm:mr-0">
       <div class="flex h-full w-full">
         <div class="block rounded-lg shadow-lg bg-white w-full">
           <div class="grid grid-cols-3 gap-1 h-full">
             <div class="bg-purple-600 flex rounded-l-lg">
-              <div class="block mt-20 mx-auto">
+              <div class="block mt-20 ml-2">
                 <fa-icon
                   [icon]="faDollar"
                   class="text-white text-6xl"
                 ></fa-icon>
-                <h5 class="text-white leading-tight font-medium mt-5 text-4xl">
+                <h5 class="text-white leading-tight font-medium mt-5 text-3xl sm:text-4xl">
                   Loan Activity
                 </h5>
               </div>
@@ -129,7 +129,7 @@
               <h1 class="text-xl mt-10">May 4</h1>
               <p class="font-light">Your ${{totalMonthlyPayment}} payment has been applied</p>
               <button
-                class="mx-2 text-red-600 font-semibold py-2 px-4 border border-red-600 hover:bg-red-600 hover:text-white hover:border-transparent rounded h-10 w-2/4"
+                class="mx-2 text-red-600 font-semibold py-2 px-4 border border-red-600 hover:bg-red-600 hover:text-white hover:border-transparent rounded h-10 w-3/4 sm:w-2/4"
               >
                 See All Activity
               </button>
@@ -139,7 +139,7 @@
       </div>
     </div>
 
-    <div class="h-64 max-w-lg rounded-lg shadow-lg bg-blue-500">
+    <div class="grid row-span-2 sm:row-span-1 col-span-2 sm:col-span-1 ml-1 mr-1 sm:ml-0 sm:mr-0 h-64 max-w-lg rounded-lg shadow-lg bg-blue-500">
       <div class="flex h-full w-full">
         <div class="block p-6">
           <h5 class="text-white text-3xl leading-tight font-medium mb-4">
