@@ -4,17 +4,22 @@
   "scripts": {
     "ng": "ng",
     "client": "ng serve",
-    "serve": "node server/server.js",
+    "serve": "node ./server.js",
     "dev": "concurrently \"npm run serve\" \"npm run client\"",
-    "build": "ng build",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "start:server": "nodemon server.js",
+    "postinstall": "ng build --output-path dist"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.3.0",
     "@angular/cdk": "^13.3.7",
     "@angular/common": "~13.3.0",
+    "@angular/cli": "~13.3.3",
     "@angular/compiler": "~13.3.0",
     "@angular/core": "~13.3.0",
     "@angular/forms": "~13.3.0",
@@ -50,6 +55,7 @@
     "rxjs": "~7.5.0",
     "tailwindcss": "^3.0.24",
     "tslib": "^2.3.0",
+    "typescript": "~4.6.2",
     "underscore": "^1.13.3",
     "zone.js": "~0.11.4"
   },
@@ -69,5 +75,9 @@
     "nodemon": "^2.0.16",
     "postcss": "^8.4.14",
     "typescript": "~4.6.2"
+  },
+  "engines": {
+    "node": "v16.13.2",
+    "npm": "8.1.2"
   }
 }
