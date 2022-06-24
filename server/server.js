@@ -32,10 +32,12 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 
-
-app.get('/', (req, res) => {
-    res.send('hello world')
+app.use("/", express.static(path.join(__dirname, "../dist/mortgage-loan-app")));
+ 
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "../dist/mortgage-loan-app/index.html"));
 });
+
 
 app.get('/api', (req, res) => {
     res.json({msg: 'Hello from api'})
@@ -47,11 +49,7 @@ app.use('/api/transactions', require('./routes/transaction'));
 app.use('/api/documents', require('./routes/documents'));
 
 
-app.use("/", express.static(path.join(__dirname, "../dist/mortgage-loan-app")));
- 
-app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "../dist/mortgage-loan-app/index.html"));
-});
+
 
 // app.get('/api/*', (req, res) => {
 //     res.send('Hello from api/whatever you want')
