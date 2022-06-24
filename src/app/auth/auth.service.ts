@@ -4,13 +4,14 @@ import { Store } from "@ngrx/store";
 import * as fromApp from '../store/app.reducer'
 import * as AuthActions from '../auth/store/auth.actions'
 import { Observable } from "rxjs";
+import { environment  } from "src/environments/environment";
 
 import { User } from '../models/user.model'
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-    private BASE_URL = 'http://localhost:3000'
+    private BASE_URL = environment.serverUrl
 
     private tokenExpirationTimer: any;
 
