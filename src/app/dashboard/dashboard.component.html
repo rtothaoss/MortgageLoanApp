@@ -8,7 +8,7 @@
     <div class="rounded-lg shadow-lg h-full row-span-2 col-span-2">
       <div class="flex h-full w-full">
         <div class="block sm:p-6 rounded-lg shadow-lg bg-white w-full">
-          <h5 class="text-gray-900 text-3xl leading-tight font-bold mb-2">
+          <h5 class="text-gray-900 text-3xl leading-tight font-bold mb-2 hidden sm:flex">
             Loan Info
           </h5>
           <div class="border bg-gray-100 h-64 mt-4 ml-2 mr-2 sm:mt-8 sm:ml-4 sm:mr-4">
@@ -129,6 +129,7 @@
               <h1 class="text-xl mt-10">May 4</h1>
               <p class="font-light">Your ${{totalMonthlyPayment}} payment has been applied</p>
               <button
+                routerLink="/transactions"
                 class="mx-2 text-red-600 font-semibold py-2 px-4 border border-red-600 hover:bg-red-600 hover:text-white hover:border-transparent rounded h-10 w-3/4 sm:w-2/4"
               >
                 See All Activity
