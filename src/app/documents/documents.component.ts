@@ -11,6 +11,7 @@ import { AuthService } from '../auth/auth.service';
 import { AuthInterceptor } from '../auth/auth-interceptor.service';
 import { Document } from '../models/document.model';
 import { LocalStorageService } from '../services/localStorage';
+import { environment  } from "src/environments/environment";
 
 
 
@@ -28,6 +29,7 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
   arrowUp = faArrowAltCircleUp
   faFile = faFileAlt;
   faFileDown = faFileArrowDown;
+  private BASE_URL = environment.serverUrl
 
   
   documents;
@@ -86,7 +88,7 @@ export class DocumentsComponent implements OnInit, AfterViewInit {
     let authToken = this.authService.getToken();
     let id = this.documents[index]._id
     
-    let path = `http://localhost:3000/api/documents/file/${id}`
+    let path = `${this.BASE_URL}/api/documents/file/${id}`
 
     this.webViewerInstance.UI.loadDocument(path, {
       customHeaders: {
