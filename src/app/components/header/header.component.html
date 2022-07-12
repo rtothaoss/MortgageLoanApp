@@ -2,6 +2,7 @@
     <div class="relative flex items-center h-10 cursor-pointer my-auto">
         <div class="navbar-header">
             <a class="navbar-brand text-white text-lg sm:text-2xl" routerLink="/">Mortgage Loan App</a>
+            <button class="text-white" (click)="consoleLog()">Console Log</button>
         </div>
         </div>
 
@@ -11,7 +12,9 @@
                     <a style="cursor: pointer" class="text-light mr-5 invisible sm:visible" (click)="consoleLog()">Contact Us</a>
                     <fa-icon [icon]="faUser" class="mr-2"></fa-icon>
                     <a *ngIf="!isAuthenticated" style="cursor: pointer" class="text-light" routerLink="/login">Login</a>
-                    <a *ngIf="isAuthenticated" style="cursor: pointer" (click)="onLogout()">Logout</a>
+                    <a *ngIf="(isAuthenticated && route === '/') || (isAuthenticated && route === '/calculator')" style="cursor: pointer" routerLink="/dashboard">Profile</a>
+                    <a *ngIf="(isAuthenticated && route !== '/') && (isAuthenticated && route !== '/calculator')"  style="cursor: pointer" (click)="onLogout()">Logout</a>
+                  
                 </li>
             </ul>
         </div>

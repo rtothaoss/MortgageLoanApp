@@ -4,7 +4,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer'
 import * as AuthActions from '../../auth/store/auth.actions'
-import { map, Subscription } from 'rxjs';
+import { filter, map, Subscription } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -17,15 +18,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
  
   faUser = faUser;
   isAuthenticated: boolean = false;
+  route: string;
   private userSub: Subscription;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>, private router: Router) { }
 
   ngOnInit(): void {
     this.userSub = this.store.select('auth').pipe(map(authState => authState.user))
     .subscribe(user => {
       this.isAuthenticated = !!user
     })
+
+    this.router.events
+    .pipe(
+      filter(e => e instanceof NavigationEnd)
+    )
+    .subscribe( (navEnd:NavigationEnd) => {
+      this.route = navEnd.urlAfterRedirects;
+      console.log(navEnd.urlAfterRedirects);
+    });
   }
 
   onLogout() {
@@ -33,7 +44,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   consoleLog() {
-    console.log('this is working')
+   console.log(this.route)
+   console.log((this.isAuthenticated && this.route !== '/calculator'))
+   console.log((this.isAuthenticated && this.route !== '/'))
+   console.log((this.isAuthenticated && this.route !== '/') && (this.isAuthenticated && this.route !== '/calculator'))
   }
 
   ngOnDestroy(): void {
